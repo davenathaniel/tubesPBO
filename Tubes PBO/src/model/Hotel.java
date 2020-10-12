@@ -15,5 +15,11 @@ package model;
  * 
  */
 public class Hotel {
+    private String lokasi;
+    private String namaHotel;
     
+    public Hotel(String lokasi, String namaHotel){
+        this.lokasi = lokasi;
+        this.namaHotel = namaHotel;
+    }
 }
