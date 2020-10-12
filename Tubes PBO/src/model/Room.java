@@ -15,5 +15,31 @@ package model;
  * 
  */
 public class Room {
+     private String tipeKamar;
+    private int noKamar;
+    private int jumlahOrang;
+    private int lamaInap;
     
+    public Room(String tipeKamar,int noKamar, int jumlahOrang, int lamaInap){
+        this.tipeKamar = tipeKamar;
+        this.noKamar = noKamar;
+        this.jumlahOrang = jumlahOrang;
+        this.lamaInap = lamaInap;
+    }
+    
+    public String getTipeKamar(){
+        return tipeKamar;
+    }
+    
+    public int getNoKamar(){
+        return noKamar;
+    }
+    
+    public int getJumlahOrang(){
+        return jumlahOrang;
+    }
+    
+    public int getLamaMenginap(){
+        return lamaInap;
+    }
 }
