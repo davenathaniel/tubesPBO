@@ -15,5 +15,25 @@ package model;
  * 
  */
 public class JenisPembayaran {
+    private int idJenisPembayaran;
+    private String jenisPembayaran;
+
+    public JenisPembayaran(int idJenisPembayaran, String jenisPembayaran) {
+        this.idJenisPembayaran = idJenisPembayaran;
+        this.jenisPembayaran = jenisPembayaran;
+    }
+
+    public int getIdJenisPembayaran() {
+        return idJenisPembayaran;
+    }
+
+    public void setIdJenisPembayaran(int idJenisPembayaran) {
+        this.idJenisPembayaran = idJenisPembayaran;
+    }
+
+    public void setJenisPembayaran(String jenisPembayaran) {
+        this.jenisPembayaran = jenisPembayaran;
+    }
+    
     
 }
