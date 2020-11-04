@@ -31,15 +31,31 @@ public class Room {
         return tipeKamar;
     }
     
+    public void setTipeKamar(String tipeKamar) {
+        this.tipeKamar = tipeKamar;
+    }
+    
     public int getNoKamar(){
         return noKamar;
+    }
+    
+    public void setNoKamar(int noKamar) {
+        this.noKamar = noKamar;
     }
     
     public int getJumlahOrang(){
         return jumlahOrang;
     }
     
+    public void setLokasi(int jumlahOrang) {
+        this.jumlahOrang = jumlahOrang;
+    }
+    
     public int getLamaMenginap(){
         return lamaInap;
+    }
+    
+    public void setLamaInap(int lamaInap) {
+        this.lamaInap = lamaInap;
     }
 }
