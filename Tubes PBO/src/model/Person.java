@@ -5,6 +5,8 @@
  */
 package model;
 
+import model.enums.TipePersonEnum;
+
 /**
  *
  * @author
@@ -14,7 +16,7 @@ package model;
  * 1119043 Tridia Enjeliani S M
  * 
  */
-public abstract class Person {
+public class Person {
     private int idPerson;
     private String username;
     private String password;
@@ -23,11 +25,11 @@ public abstract class Person {
     private String noKTP;
     private String noHP;
     private String email;
-    private int tipePerson;
+    private TipePersonEnum tipePerson;
     
     public Person(){}
     
-    public Person(int idPerson, String username, String password, String nama, String alamat, String noKTP, String noHP, String email, int tipePerson) {
+    public Person(int idPerson, String username, String password, String nama, String alamat, String noKTP, String noHP, String email, TipePersonEnum tipePerson) {
         this.idPerson = idPerson;
         this.username = username;
         this.password = password;
@@ -71,8 +73,44 @@ public abstract class Person {
         return email;
     }
 
-    public int getTipePerson() {
+    public TipePersonEnum getTipePerson() {
         return tipePerson;
+    }
+    
+    public void setTipePerson(TipePersonEnum tipePerson) {
+        this.tipePerson = tipePerson;
+    }
+
+    public void setIdPerson(int idPerson) {
+        this.idPerson = idPerson;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setNama(String nama) {
+        this.nama = nama;
+    }
+
+    public void setAlamat(String alamat) {
+        this.alamat = alamat;
+    }
+
+    public void setNoKTP(String noKTP) {
+        this.noKTP = noKTP;
+    }
+
+    public void setNoHP(String noHP) {
+        this.noHP = noHP;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
     
 }
