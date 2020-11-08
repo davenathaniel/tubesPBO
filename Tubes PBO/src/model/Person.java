@@ -74,5 +74,42 @@ public abstract class Person {
     public int getTipePerson() {
         return tipePerson;
     }
+
+    public void setIdPerson(int idPerson) {
+        this.idPerson = idPerson;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setNama(String nama) {
+        this.nama = nama;
+    }
+
+    public void setAlamat(String alamat) {
+        this.alamat = alamat;
+    }
+
+    public void setNoKTP(String noKTP) {
+        this.noKTP = noKTP;
+    }
+
+    public void setNoHP(String noHP) {
+        this.noHP = noHP;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setTipePerson(int tipePerson) {
+        this.tipePerson = tipePerson;
+    }
+    
     
 }
