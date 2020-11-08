@@ -14,7 +14,7 @@ package model;
  * 1119043 Tridia Enjeliani S M
  * 
  */
-public abstract class Admin extends Person {
+public class Admin extends Person {
 
     public Admin(int idPerson, String username, String password, String nama, String alamat, String noKTP, String noHP, String email, int tipePerson) {
         super(idPerson, username, password, nama, alamat, noKTP, noHP, email, tipePerson);
