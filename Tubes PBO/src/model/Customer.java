@@ -14,7 +14,7 @@ package model;
  * 1119043 Tridia Enjeliani S M
  * 
  */
-public abstract class Customer extends Person {
+public class Customer extends Person {
 
     public Customer(int idPerson, String username, String password, String nama, String alamat, String noKTP, String noHP, String email, int tipePerson) {
         super(idPerson, username, password, nama, alamat, noKTP, noHP, email, tipePerson);

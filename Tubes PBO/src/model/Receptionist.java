@@ -14,7 +14,7 @@ package model;
  * 1119043 Tridia Enjeliani S M
  * 
  */
-public abstract class Receptionist extends Person {
+public class Receptionist extends Person {
     private int idCabang;
     private int salary;
     private int absensi;
