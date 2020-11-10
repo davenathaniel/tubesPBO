@@ -27,7 +27,8 @@ public class Person {
     private String email;
     private TipePersonEnum tipePerson;
     
-    public Person(){}
+    public Person(){
+    }
     
     public Person(int idPerson, String username, String password, String nama, String alamat, String noKTP, String noHP, String email, TipePersonEnum tipePerson) {
         this.idPerson = idPerson;
@@ -39,7 +40,18 @@ public class Person {
         this.noHP = noHP;
         this.email = email;
         this.tipePerson = tipePerson;
-    }    
+    }  
+    
+    public Person(String username, String password, String nama, String alamat, String noKTP, String noHP, String email, TipePersonEnum tipePerson) {
+        this.username = username;
+        this.password = password;
+        this.nama = nama;
+        this.alamat = alamat;
+        this.noKTP = noKTP;
+        this.noHP = noHP;
+        this.email = email;
+        this.tipePerson = tipePerson;
+    }
 
     public int getIdPerson() {
         return idPerson;
