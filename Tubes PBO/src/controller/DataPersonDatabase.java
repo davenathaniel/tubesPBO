@@ -30,7 +30,7 @@ public class DataPersonDatabase {
             stmt.setString(5, "1234567890111213");
             stmt.setString(6, "081234567890");
             stmt.setString(7, "maria00@gmail.co.id");
-            stmt.setInt(8, 3);
+            stmt.setInt(8, 2);
             stmt.executeUpdate();
             stmt = conn.con.prepareStatement(query);
             stmt.setString(1, "Enjel");
@@ -40,10 +40,19 @@ public class DataPersonDatabase {
             stmt.setString(5, "0987654321098765");
             stmt.setString(6, "082167890543");
             stmt.setString(7, "enjel46@gmail.co.id");
-            stmt.setInt(8, 1);
+            stmt.setInt(8, 0);
             stmt.executeUpdate();
-            //query = "INSERT INTO person (username, password, nama, alamat, noKTP, noHP, email, tipePerson, ) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
-            
+            query = "INSERT INTO person (username, password, nama, alamat, noKTP, noHP, email, tipePerson, idCabang, salary, absensi) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            stmt = conn.con.prepareStatement(query);
+            stmt.setString(1, "Dave");
+            stmt.setString(2, getMd5("receptionist"));
+            stmt.setString(3, "Dave Nathaniel");
+            stmt.setString(4, "Dago");
+            stmt.setString(5, "0213455634243356");
+            stmt.setString(6, "083245253467");
+            stmt.setString(7, "dave12@gmail.co.id");
+            stmt.setInt(8, 1);
+            stmt.setInt(9, 1);
         }catch (SQLException e){
             e.printStackTrace();
         }
