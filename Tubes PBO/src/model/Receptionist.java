@@ -5,6 +5,8 @@
  */
 package model;
 
+import model.enums.TipePersonEnum;
+
 /**
  *
  * @author
@@ -14,13 +16,39 @@ package model;
  * 1119043 Tridia Enjeliani S M
  * 
  */
-public abstract class Receptionist extends Person {
+public class Receptionist extends Person {
     private int idCabang;
     private int salary;
     private int absensi;
+    
+    public Receptionist(){
+        
+    }
 
-    public Receptionist(int idPerson, String username, String password, String nama, String alamat, String noKTP, String noHP, String email, int tipePerson) {
+    public Receptionist(int idCabang, int salary, int absensi, int idPerson, String username, String password, String nama, String alamat, String noKTP, String noHP, String email, TipePersonEnum tipePerson) {
         super(idPerson, username, password, nama, alamat, noKTP, noHP, email, tipePerson);
+        this.idCabang = idCabang;
+        this.salary = salary;
+        this.absensi = absensi;
+    }
+    
+    public Receptionist(int idCabang, int salary, int absensi, String username, String password, String nama, String alamat, String noKTP, String noHP, String email, TipePersonEnum tipePerson) {
+        super(username, password, nama, alamat, noKTP, noHP, email, tipePerson);
+        this.idCabang = idCabang;
+        this.salary = salary;
+        this.absensi = absensi;
+    }
+
+    public void setIdCabang(int idCabang) {
+        this.idCabang = idCabang;
+    }
+
+    public void setSalary(int salary) {
+        this.salary = salary;
+    }
+
+    public void setAbsensi(int absensi) {
+        this.absensi = absensi;
     }
 
     public int getIdCabang() {
