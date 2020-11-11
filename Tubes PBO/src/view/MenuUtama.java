@@ -60,7 +60,7 @@ public class MenuUtama implements ActionListener{
             case "Login" :
                 layarUtama.dispose();
                 new MenuLogin();
-                break;//
+                break;
             case "Register":
                 layarUtama.dispose();
                 new MenuRegister();

@@ -21,22 +21,22 @@ public class Receptionist extends Person {
     private int salary;
     private int absensi;
     
-    public Receptionist(){}
-    
-    public Receptionist(int idPerson, String username, String password, String nama, String alamat, String noKTP, String noHP, String email, TipePersonEnum tipePerson) {
+    public Receptionist(){
+        
+    }
+
+    public Receptionist(int idCabang, int salary, int absensi, int idPerson, String username, String password, String nama, String alamat, String noKTP, String noHP, String email, TipePersonEnum tipePerson) {
         super(idPerson, username, password, nama, alamat, noKTP, noHP, email, tipePerson);
+        this.idCabang = idCabang;
+        this.salary = salary;
+        this.absensi = absensi;
     }
-
-    public int getIdCabang() {
-        return idCabang;
-    }
-
-    public int getSalary() {
-        return salary;
-    }
-
-    public int getAbsensi() {
-        return absensi;
+    
+    public Receptionist(int idCabang, int salary, int absensi, String username, String password, String nama, String alamat, String noKTP, String noHP, String email, TipePersonEnum tipePerson) {
+        super(username, password, nama, alamat, noKTP, noHP, email, tipePerson);
+        this.idCabang = idCabang;
+        this.salary = salary;
+        this.absensi = absensi;
     }
 
     public void setIdCabang(int idCabang) {
@@ -49,6 +49,18 @@ public class Receptionist extends Person {
 
     public void setAbsensi(int absensi) {
         this.absensi = absensi;
+    }
+
+    public int getIdCabang() {
+        return idCabang;
+    }
+
+    public int getSalary() {
+        return salary;
+    }
+
+    public int getAbsensi() {
+        return absensi;
     }
     
 }
