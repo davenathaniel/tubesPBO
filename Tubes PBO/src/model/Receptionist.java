@@ -5,6 +5,8 @@
  */
 package model;
 
+import model.enums.TipePersonEnum;
+
 /**
  *
  * @author
@@ -18,8 +20,10 @@ public class Receptionist extends Person {
     private int idCabang;
     private int salary;
     private int absensi;
-
-    public Receptionist(int idPerson, String username, String password, String nama, String alamat, String noKTP, String noHP, String email, int tipePerson) {
+    
+    public Receptionist(){}
+    
+    public Receptionist(int idPerson, String username, String password, String nama, String alamat, String noKTP, String noHP, String email, TipePersonEnum tipePerson) {
         super(idPerson, username, password, nama, alamat, noKTP, noHP, email, tipePerson);
     }
 
@@ -33,6 +37,18 @@ public class Receptionist extends Person {
 
     public int getAbsensi() {
         return absensi;
+    }
+
+    public void setIdCabang(int idCabang) {
+        this.idCabang = idCabang;
+    }
+
+    public void setSalary(int salary) {
+        this.salary = salary;
+    }
+
+    public void setAbsensi(int absensi) {
+        this.absensi = absensi;
     }
     
 }
