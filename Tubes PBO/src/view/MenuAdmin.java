@@ -84,7 +84,6 @@ public class MenuAdmin implements ActionListener{
                     layoutAdmin.dispose();
                     new MenuUtama();
                 }
-                
                 break;
         }
     }
