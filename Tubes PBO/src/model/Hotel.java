@@ -15,5 +15,27 @@ package model;
  * 
  */
 public class Hotel {
+    private String lokasi;
+    private String namaHotel;
     
+    public Hotel(String lokasi, String namaHotel){
+        this.lokasi = lokasi;
+        this.namaHotel = namaHotel;
+    }
+    
+    public String getLokasi(){
+        return lokasi;
+    }
+    
+    public void setLokasi(String lokasi) {
+        this.lokasi = lokasi;
+    }
+    
+    public String getNamaHotel(){
+        return namaHotel;
+    }
+    
+    public void setNamaHotel(String namaHotel) {
+        this.namaHotel = namaHotel;
+    }
 }
