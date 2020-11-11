@@ -16,8 +16,8 @@ import javax.swing.*;
  */
 public class MenuRegister implements ActionListener {
     JFrame registerForm = new JFrame("Registration Page");
-    JLabel title, namaLabel, alamatLabel, ktpLabel, teleponLabel, usernameLabel, passwordLabel;
-    JTextField nama, ktp, telepon, username, alamat;
+    JLabel title, namaLabel, alamatLabel, ktpLabel, teleponLabel, usernameLabel, passwordLabel, emailLabel;
+    JTextField nama, ktp, telepon, username, alamat, email;
     JPasswordField password;
     JPanel dataPanel;
     JButton registerButton, cancelButton;
@@ -56,28 +56,42 @@ public class MenuRegister implements ActionListener {
         ktp.setBounds(180,130,320,50);
         ktpLabel.setFont(formFont);
         
+        emailLabel = new JLabel("Email",JLabel.LEFT);
+        emailLabel.setBounds(10,190,150,50);
+        emailLabel.setFont(formFont);
+        email = new JTextField();
+        email.setBounds(180,190,320,50);
+        email.setFont(formFont);
+        
+        teleponLabel =  new JLabel("Telepon",JLabel.LEFT);
+        teleponLabel.setBounds(10,250,150,50);
+        teleponLabel.setFont(formFont);
+        telepon = new JTextField();
+        telepon.setBounds(180,250,320,50);
+        telepon.setFont(formFont);
+        
         usernameLabel = new JLabel("Username",JLabel.LEFT);
-        usernameLabel.setBounds(10,190, 150,50);
+        usernameLabel.setBounds(10,310, 150,50);
         usernameLabel.setFont(formFont);
         username = new JTextField();
-        username.setBounds(180,190,320,50);
+        username.setBounds(180,310,320,50);
         username.setFont(formFont);
         
         passwordLabel = new JLabel("Password",JLabel.LEFT);
-        passwordLabel.setBounds(10,250,150,50);
+        passwordLabel.setBounds(10,370,150,50);
         passwordLabel.setFont(formFont);
         password = new JPasswordField();
-        password.setBounds(180,250,320,50);
+        password.setBounds(180,370,320,50);
         password.setFont(formFont);
         
         cancelButton = new JButton("Cancel");
-        cancelButton.setBounds(30,370,150,70);
+        cancelButton.setBounds(30,480,150,70);
         cancelButton.setFont(formFont);
         cancelButton.addActionListener(this);
         cancelButton.setBackground(new Color(255, 179, 179));
         
         registerButton = new JButton("Register");
-        registerButton.setBounds(320,370,150,70);
+        registerButton.setBounds(320,480,150,70);
         registerButton.setFont(formFont);
         registerButton.addActionListener(this);
         
@@ -87,6 +101,10 @@ public class MenuRegister implements ActionListener {
         dataPanel.add(alamat);
         dataPanel.add(ktpLabel);
         dataPanel.add(ktp);
+        dataPanel.add(emailLabel);
+        dataPanel.add(email);
+        dataPanel.add(teleponLabel);
+        dataPanel.add(telepon);
         dataPanel.add(usernameLabel);
         dataPanel.add(username);
         dataPanel.add(passwordLabel);

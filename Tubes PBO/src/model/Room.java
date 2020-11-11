@@ -15,7 +15,7 @@ package model;
  * 
  */
 public class Room {
-     private String tipeKamar;
+    private String tipeKamar;
     private int noKamar;
     private int jumlahOrang;
     private int lamaInap;

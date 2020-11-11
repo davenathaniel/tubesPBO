@@ -74,8 +74,16 @@ public class MenuAdmin implements ActionListener{
                 JOptionPane.showMessageDialog(f2, "Feature Coming Soon!", "Alert",JOptionPane.WARNING_MESSAGE);
                 break;    
             case "Logout":
-                layoutAdmin.dispose();
-                new MenuUtama();
+                int jawab = JOptionPane.showOptionDialog(null, 
+                    "Log Out Now?", 
+                    "Log Out", 
+                    JOptionPane.YES_NO_OPTION, 
+                    JOptionPane.QUESTION_MESSAGE, null, null, null);
+    
+                if(jawab == JOptionPane.YES_OPTION){
+                    layoutAdmin.dispose();
+                    new MenuUtama();
+                }
                 break;
         }
     }

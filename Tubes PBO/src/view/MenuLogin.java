@@ -5,10 +5,13 @@
  */
 package view;
 
+import controller.Controller;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
+import model.PersonManager;
+import model.enums.TipePersonEnum;
 
 /**
  *
@@ -77,8 +80,6 @@ public class MenuLogin implements ActionListener{
         dataPanel.setBounds(710, (int)Toolkit.getDefaultToolkit().getScreenSize().getHeight()/5,500,700);
         dataPanel.setBackground(new Color(203,202,250));
         
-        
-        
         loginPage.add(title);
         loginPage.add(dataPanel);
         loginPage.setLayout(null);
@@ -93,8 +94,32 @@ public class MenuLogin implements ActionListener{
                 new MenuUtama();
                 break;
             case "Login":
-                loginPage.dispose();
-                //new menu apalah yg nampilin per user kan?
+                String uname = username.getText();
+                String pass = new String(password.getPassword());
+                if (uname.equals("") && pass.equals("")) {
+                    JOptionPane.showMessageDialog(null, "Please insert username and password!", "Alert", JOptionPane.WARNING_MESSAGE);
+                } else if (uname.equals("")) {
+                    JOptionPane.showMessageDialog(null, "Please insert username!", "Alert", JOptionPane.WARNING_MESSAGE);
+                } else if (pass.equals("")) {
+                    JOptionPane.showMessageDialog(null, "Please insert password!", "Alert", JOptionPane.WARNING_MESSAGE);
+                } else if (Controller.cekPassword(uname, pass)) {
+                    PersonManager.getInstance().setPerson(Controller.getPerson(uname));
+                    if (PersonManager.getInstance().getPerson().getTipePerson() == TipePersonEnum.ADMIN) {
+                        loginPage.dispose();
+                        new MenuAdmin();
+                    } else if (PersonManager.getInstance().getPerson().getTipePerson() == TipePersonEnum.RECEPTIONIST) {
+                        loginPage.dispose();
+                        new MenuLogin();
+                    } else if (PersonManager.getInstance().getPerson().getTipePerson() == TipePersonEnum.CUSTOMER) {
+                        loginPage.dispose();
+                        new MenuRegister();
+                    } else {
+                        loginPage.dispose();
+                        new MenuUtama();
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Insert username and password correctly!", "Alert", JOptionPane.WARNING_MESSAGE);
+                }
                 break;
             case "Click here to register new account":
                 loginPage.dispose();

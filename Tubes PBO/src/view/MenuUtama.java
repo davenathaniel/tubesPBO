@@ -22,6 +22,7 @@ public class MenuUtama implements ActionListener{
     
     public MenuUtama(){
         layarUtama.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        layarUtama.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         layarUtama.getContentPane().setBackground(new Color(203,202,250));
         title = new JLabel("~ H o t e l     H a r a p a n     B a n g s a ~",JLabel.CENTER);
         title.setBounds(0,0, (int)Toolkit.getDefaultToolkit().getScreenSize().getWidth(),(int)Toolkit.getDefaultToolkit().getScreenSize().getHeight()/5);
@@ -59,7 +60,7 @@ public class MenuUtama implements ActionListener{
             case "Login" :
                 layarUtama.dispose();
                 new MenuLogin();
-                break;//
+                break;
             case "Register":
                 layarUtama.dispose();
                 new MenuRegister();
