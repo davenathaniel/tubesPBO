@@ -18,13 +18,24 @@ public class Room {
     private String tipeKamar;
     private int noKamar;
     private int jumlahOrang;
-    private int lamaInap;
+    private int harga;
     
-    public Room(String tipeKamar,int noKamar, int jumlahOrang, int lamaInap){
+    public Room(String tipeKamar,int noKamar, int jumlahOrang, int harga){
         this.tipeKamar = tipeKamar;
         this.noKamar = noKamar;
         this.jumlahOrang = jumlahOrang;
-        this.lamaInap = lamaInap;
+        this.harga = harga;
+    }
+
+    public Room() {
+    }
+
+    public double getHarga() {
+        return harga;
+    }
+
+    public void setHarga(int harga) {
+        this.harga = harga;
     }
     
     public String getTipeKamar(){
@@ -49,13 +60,5 @@ public class Room {
     
     public void setLokasi(int jumlahOrang) {
         this.jumlahOrang = jumlahOrang;
-    }
-    
-    public int getLamaMenginap(){
-        return lamaInap;
-    }
-    
-    public void setLamaInap(int lamaInap) {
-        this.lamaInap = lamaInap;
     }
 }
