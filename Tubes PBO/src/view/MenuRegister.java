@@ -5,10 +5,16 @@
  */
 package view;
 
+import controller.Controller;
 import java.awt.*;
+import javax.swing.JOptionPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import model.Person;
+import model.enums.TipePersonEnum;
 
 /**
  *
@@ -16,7 +22,7 @@ import javax.swing.*;
  */
 public class MenuRegister implements ActionListener {
     JFrame registerForm = new JFrame("Registration Page");
-    JLabel title, namaLabel, alamatLabel, ktpLabel, teleponLabel, usernameLabel, passwordLabel, emailLabel;
+    JLabel title, namaLabel, alamatLabel, message, ktpLabel, teleponLabel, usernameLabel, passwordLabel, emailLabel;
     JTextField nama, ktp, telepon, username, alamat, email;
     JPasswordField password;
     JPanel dataPanel;
@@ -70,12 +76,45 @@ public class MenuRegister implements ActionListener {
         telepon.setBounds(180,250,320,50);
         telepon.setFont(formFont);
         
+        message = new JLabel("Username Already Exist");
+        message.setBounds(200,560,300,70);
+        message.setFont(formFont);
+        message.setForeground(Color.red);
+        
         usernameLabel = new JLabel("Username",JLabel.LEFT);
         usernameLabel.setBounds(10,310, 150,50);
         usernameLabel.setFont(formFont);
         username = new JTextField();
         username.setBounds(180,310,320,50);
         username.setFont(formFont);
+        username.getDocument().addDocumentListener(new DocumentListener(){
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                if(Controller.cekUsername(username.getText())){
+                    registerButton.setEnabled(false);
+                    message.setText("username already taken");
+                }else{
+                    registerButton.setEnabled(true);
+                    message.setText("");
+                }
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                if(Controller.cekUsername(username.getText())){
+                    registerButton.setEnabled(false);
+                    message.setText("username already taken");
+                }else{
+                    registerButton.setEnabled(true);
+                    message.setText("");
+                }
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                
+            }
+        });
         
         passwordLabel = new JLabel("Password",JLabel.LEFT);
         passwordLabel.setBounds(10,370,150,50);
@@ -128,9 +167,38 @@ public class MenuRegister implements ActionListener {
                 new MenuUtama();
                 break;
             case "Register":
-                registerForm.dispose();
-                new MenuLogin();
-                break;
+                String nama = this.nama.getText();
+                String alamat = this.alamat.getText();
+                String noKTP = this.ktp.getText();
+                String email = this.telepon.getText();
+                String noHP = this.telepon.getText();
+                String uname = username.getText();
+                String pass = new String(password.getPassword());
+                int x = JOptionPane.showOptionDialog(null, "Are you sure?", "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
+                if(x == JOptionPane.YES_OPTION){
+                    if(nama.length() == 0 || alamat.length() == 0 || noKTP.length() == 0 || email.length() == 0 || noHP.length() == 0 || uname.length() == 0 || pass.length() == 0){
+                        JOptionPane.showMessageDialog(null, "Input all the data!", "Alert", JOptionPane.WARNING_MESSAGE);
+                    }else{
+                        Person newPerson = new Person();
+                        newPerson.setUsername(uname);
+                        newPerson.setPassword(pass);
+                        newPerson.setNama(nama);
+                        newPerson.setAlamat(alamat);
+                        newPerson.setNoKTP(noKTP);
+                        newPerson.setNoHP(noHP);
+                        newPerson.setEmail(email);
+                        newPerson.setTipePerson(TipePersonEnum.CUSTOMER);
+                        if(Controller.insertCustomer(newPerson)){
+                            JOptionPane.showMessageDialog(null, "Registration Complete!\nPlease Login!");
+                            registerForm.dispose();
+                            new MenuLogin();
+                        }else{
+                            JOptionPane.showMessageDialog(null, "Data can't be inserted!", "Alert", JOptionPane.WARNING_MESSAGE);
+                        }
+                    }
+                    
+                }
+                break;      
         }
     } 
 }
