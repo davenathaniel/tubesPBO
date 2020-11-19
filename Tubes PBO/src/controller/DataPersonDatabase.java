@@ -42,7 +42,7 @@ public class DataPersonDatabase {
             stmt.setString(7, "enjel46@gmail.co.id");
             stmt.setInt(8, 0);
             stmt.executeUpdate();
-            query = "INSERT INTO person (username, password, nama, alamat, noKTP, noHP, email, tipePerson, idCabang, salary, absensi) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            /*query = "INSERT INTO person (username, password, nama, alamat, noKTP, noHP, email, tipePerson, idCabang, salary) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
             stmt = conn.con.prepareStatement(query);
             stmt.setString(1, "Dave");
             stmt.setString(2, getMd5("receptionist"));
@@ -53,10 +53,14 @@ public class DataPersonDatabase {
             stmt.setString(7, "dave12@gmail.co.id");
             stmt.setInt(8, 1);
             stmt.setInt(9, 1);
+            stmt.setInt(10, 500000);
+            stmt.executeUpdate();*/
+            return true;
         }catch (SQLException e){
             e.printStackTrace();
+            
+            return false;
         }
-        return false;
     }
 
     private static String getMd5(String input) {

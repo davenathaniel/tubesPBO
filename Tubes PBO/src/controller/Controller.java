@@ -46,7 +46,7 @@ public class Controller {
                         person.setTipePerson(CUSTOMER);
                         break;
                     case 1:
-                        //person = new Receptionist(rs.getInt("idCabang"), rs.getInt("salary"), rs.getInt("absensi"));
+                        person = new Receptionist(rs.getInt("idCabang"), rs.getInt("salary"), rs.getInt("absensi"));
                         person.setTipePerson(RECEPTIONIST);
                         break;
                     case 2:
@@ -140,10 +140,12 @@ public class Controller {
             stmt.setString(6, person.getNoHP());
             stmt.setString(7, person.getEmail());
             stmt.setInt(8, 0);
+            stmt.executeUpdate();
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
-        return false;
     }
     
     public static boolean insertNewReceptionist(Receptionist person){
@@ -162,10 +164,12 @@ public class Controller {
             stmt.setInt(9, person.getIdCabang());
             stmt.setInt(10, person.getSalary());
             stmt.setInt(11, person.getAbsensi());
+            stmt.executeUpdate();
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
-        return false;
     }
     
     public static boolean insertNewAdmin(Person person){
@@ -181,9 +185,13 @@ public class Controller {
             stmt.setString(6, person.getNoHP());
             stmt.setString(7, person.getEmail());
             stmt.setInt(8, 2);
+            stmt.executeUpdate();
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
-        return false;
     }
+    
+    
 }

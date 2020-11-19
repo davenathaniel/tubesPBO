@@ -38,6 +38,12 @@ public class Receptionist extends Person {
         this.salary = salary;
         this.absensi = absensi;
     }
+    
+    public Receptionist(int idCabang, int salary, int absensi){
+        this.idCabang = idCabang;
+        this.salary = salary;
+        this.absensi = absensi;
+    }
 
     public void setIdCabang(int idCabang) {
         this.idCabang = idCabang;
