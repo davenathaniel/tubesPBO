@@ -8,8 +8,6 @@ package view;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.util.Properties;
 import javax.swing.*;
 import org.jdatepicker.impl.JDatePanelImpl;
@@ -20,10 +18,10 @@ import org.jdatepicker.impl.UtilDateModel;
  *
  * @author maria
  */
-public class MenuBooking implements ActionListener, ItemListener{
-    JFrame layoutBooking = new JFrame("Menu Booking");
-    JLabel title, labelHotel, labelTipeKamar, labelJumlahGuest, labelTanggalCheckIn, labelTanggalCheckOut, labelJumlahKamar;
-    JTextField jumlahGuest, jumlahKamar;
+public class MenuReschedule implements ActionListener{
+    JFrame layoutReschedule = new JFrame("Menu Reschedule");
+    JLabel title, labelHotel,labelNoBooking,labelTipeKamar,labelJumlahGuest, labelTanggalCheckIn, labelTanggalCheckOut, labelJumlahKamar;
+    JTextField nomorBooking, jumlahGuest, jumlahKamar;
     JComboBox cabangHotel, tipeKamar;
     JButton buttonSubmit, buttonCancel;
     JPanel dataPanel;
@@ -34,53 +32,50 @@ public class MenuBooking implements ActionListener, ItemListener{
     Font formFont = new Font("Arial",Font.PLAIN,20);
     
     
-    public MenuBooking() {
-        layoutBooking.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        layoutBooking.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        layoutBooking.getContentPane().setBackground(new Color(203,202,250));
+    public MenuReschedule() {
+        layoutReschedule.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        layoutReschedule.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        layoutReschedule.getContentPane().setBackground(new Color(203,202,250));
         
-        title = new JLabel("B O O K I N G    M E N U",JLabel.CENTER);
+        title = new JLabel("R E S C H E D U L E    M E N U",JLabel.CENTER);
         title.setBounds(0,0, (int)Toolkit.getDefaultToolkit().getScreenSize().getWidth(),(int)Toolkit.getDefaultToolkit().getScreenSize().getHeight()/5);
         title.setFont(new Font("Impact",Font.PLAIN,50));
         
         dataPanel = new JPanel();
         dataPanel.setLayout(null);
         
+        labelNoBooking =  new JLabel("Nomor Booking");
+        labelNoBooking.setBounds(700,10,200,50);
+        labelNoBooking.setFont(formFont);
+        
+        nomorBooking = new JTextField();
+        nomorBooking.setBounds(950, 10,300,50);
+        nomorBooking.setFont(formFont);
+        
         labelHotel = new JLabel("Cabang hotel");
-        labelHotel.setBounds(650,10,200,50);
+        labelHotel.setBounds(700,70,200,50);
         labelHotel.setFont(formFont);
-        cabangHotel = new JComboBox(controller.Controller.getHotelNameList());
-        cabangHotel.addItemListener(this);
-        cabangHotel.setSelectedIndex(0);
-        cabangHotel.setBounds(900,10,300,50);
+        cabangHotel = new JComboBox();
+        cabangHotel.setBounds(950,70,300,50);
         cabangHotel.setFont(formFont);
         
         labelTipeKamar = new JLabel("Tipe Kamar");
-        labelTipeKamar.setBounds(650, 70,200,50);
+        labelTipeKamar.setBounds(700, 130,200,50);
         labelTipeKamar.setFont(formFont);
         tipeKamar = new JComboBox();
-        int i = controller.DataController.getListRoom(controller.Controller.getHotelIDbyName(String.valueOf(cabangHotel.getSelectedItem()))).size();
-        String[] listNamaKamar = controller.Controller.getRoomNameList(String.valueOf(cabangHotel.getSelectedItem()));
-        for (int counter = 0; counter < i; counter++) {
-            if (!"".equals(listNamaKamar[counter])) {
-                tipeKamar.addItem(listNamaKamar[counter]);
-            }
-        }
-        tipeKamar.addItemListener(this);
-        tipeKamar.setSelectedIndex(0);
-        tipeKamar.setBounds(900, 70, 300,50);
+        tipeKamar.setBounds(950, 130, 300,50);
         tipeKamar.setFont(formFont);
         
         labelJumlahGuest = new JLabel("Jumlah Guest");
-        labelJumlahGuest.setBounds(650, 130,200,50);
+        labelJumlahGuest.setBounds(700, 190,200,50);
         labelJumlahGuest.setFont(formFont);
         
         jumlahGuest = new JTextField();
-        jumlahGuest.setBounds(900, 130,300,50);
+        jumlahGuest.setBounds(950, 190,300,50);
         jumlahGuest.setFont(formFont);
         
         labelTanggalCheckIn = new JLabel("Tanggal Check-In");
-        labelTanggalCheckIn.setBounds(650, 190, 200,50);
+        labelTanggalCheckIn.setBounds(700, 260, 200,50);
         labelTanggalCheckIn.setFont(formFont);
         
         model1 = new UtilDateModel();
@@ -90,12 +85,12 @@ public class MenuBooking implements ActionListener, ItemListener{
         p1.put("text.year", "Year");
         datePanel1 = new JDatePanelImpl(model1, p1);
         datePicker1 = new JDatePickerImpl(datePanel1, new DateLabelFormatter());
-        datePicker1.setBounds(900,200,300,25);
+        datePicker1.setBounds(950,270,300,25);
         datePicker1.setFont(formFont);
         datePicker1.setBackground(new Color(203,202,250));
         
         labelTanggalCheckOut = new JLabel("Tanggal Check-Out");
-        labelTanggalCheckOut.setBounds(650, 260, 200,50);
+        labelTanggalCheckOut.setBounds(700, 320, 200,50);
         labelTanggalCheckOut.setFont(formFont);
         
         model2 = new UtilDateModel();
@@ -105,27 +100,29 @@ public class MenuBooking implements ActionListener, ItemListener{
         p2.put("text.year", "Year");
         datePanel2 = new JDatePanelImpl(model2, p2);
         datePicker2 = new JDatePickerImpl(datePanel2, new DateLabelFormatter());
-        datePicker2.setBounds(900,270,300,25);
+        datePicker2.setBounds(950,330,300,25);
         datePicker2.setFont(formFont);
         datePicker2.setBackground(new Color(203,202,250));
         
         labelJumlahKamar = new JLabel("Jumlah Kamar");
-        labelJumlahKamar.setBounds(650, 320, 200,50);
+        labelJumlahKamar.setBounds(700, 380, 200,50);
         labelJumlahKamar.setFont(formFont);
         jumlahKamar = new JTextField();
-        jumlahKamar.setBounds(900, 320,300,50);
+        jumlahKamar.setBounds(950, 380,300,50);
         jumlahKamar.setFont(formFont);
         
         buttonCancel = new JButton("Cancel");
-        buttonCancel.setBounds(900,380,150,50);
+        buttonCancel.setBounds(950,440,150,50);
         buttonCancel.setFont(formFont);
         buttonCancel.addActionListener(this);
         
         buttonSubmit = new JButton("Submit");
-        buttonSubmit.setBounds(1100,380,150,50);
+        buttonSubmit.setBounds(1150,440,150,50);
         buttonSubmit.setFont(formFont);
         buttonSubmit.addActionListener(this);
         
+        dataPanel.add(labelNoBooking);
+        dataPanel.add(nomorBooking);
         dataPanel.add(labelHotel);
         dataPanel.add(cabangHotel);
         dataPanel.add(labelTipeKamar);
@@ -143,10 +140,10 @@ public class MenuBooking implements ActionListener, ItemListener{
         dataPanel.setBounds(0,(int)Toolkit.getDefaultToolkit().getScreenSize().getHeight()/5,(int)Toolkit.getDefaultToolkit().getScreenSize().getWidth(),500);
         dataPanel.setBackground(new Color(203,202,250));
         
-        layoutBooking.add(title);
-        layoutBooking.add(dataPanel);
-        layoutBooking.setLayout(null);
-        layoutBooking.setVisible(true);
+        layoutReschedule.add(title);
+        layoutReschedule.add(dataPanel);
+        layoutReschedule.setLayout(null);
+        layoutReschedule.setVisible(true);
     }
 
     @Override
@@ -154,31 +151,12 @@ public class MenuBooking implements ActionListener, ItemListener{
         String buttonClick = e.getActionCommand();
         switch(buttonClick){
             case "Submit" :
-                layoutBooking.dispose();
+                layoutReschedule.dispose();
                 break;
             case "Cancel":
-                layoutBooking.dispose();
+                layoutReschedule.dispose();
                 new MenuCustomer();
                 break;
         }
     }
-
-    @Override
-    public void itemStateChanged(ItemEvent e) {
-        if (e.getSource() == cabangHotel) {
-            cabangHotel.setSelectedItem(e);
-            tipeKamar.removeAllItems();
-            int i = controller.DataController.getListRoom(controller.Controller.getHotelIDbyName(String.valueOf(cabangHotel.getSelectedItem()))).size();
-            String[] listNamaKamar = controller.Controller.getRoomNameList(String.valueOf(cabangHotel.getSelectedItem()));
-            for (int counter = 0; counter < i; counter++) {
-                if (listNamaKamar[counter] != "") {
-                    tipeKamar.addItem(listNamaKamar[counter]);
-                }
-            }
-            tipeKamar.setSelectedIndex(0);
-        } else if (e.getSource() == tipeKamar) {
-            tipeKamar.setSelectedItem(e);
-        }
-    }
-    
 }

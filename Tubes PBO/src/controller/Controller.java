@@ -192,6 +192,86 @@ public class Controller {
             return false;
         }
     }
+    public static int getHotelIDbyName(String name) {
+        conn.connect();
+        String query = "SELECT * FROM hotel WHERE nama='" + name + "'";
+        try {
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                Hotel a = new Hotel();
+                return rs.getInt("idHotel");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return -1;
+    }
+
+    public static int getRoomIDbyName(String name) {
+        conn.connect();
+        String query = "SELECT * FROM hotel WHERE nama='" + name + "'";
+        try {
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                return rs.getInt("idHotel");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return -1;
+    }
     
+    //get nama cabang hotel yang tersedia
+    public static String[] getHotelNameList() {
+        String[] listNamaHotel = new String[DataController.listCabangHotel.size()];
+        for (int counter = 0; counter < DataController.listCabangHotel.size(); counter++) {
+            listNamaHotel[counter] = DataController.listCabangHotel.get(counter).getNamaHotel();
+        }
+        return listNamaHotel;
+    }
     
+    //get kamar hotel yang tersedia
+    public static String[] getRoomNameList(String namaHotel) {
+        int a = getHotelIDbyName(String.valueOf(namaHotel));
+        int i = DataController.getListRoom(a).size();
+        String[] listNamaKamar = new String[i];
+        for (int j = 0; j < i; j++) {
+            listNamaKamar[j] = "";
+        }
+        ArrayList<Room> listRoom = controller.DataController.getListRoom(a);
+        int j = 0, counter2 = 0;
+        for (int counter = 0; counter < i; counter++) {
+            boolean isThere = false;
+            while (isThere == false && counter2 < i) {
+                if (listNamaKamar[counter2].equals(listRoom.get(counter).getTipeKamar())) {
+                    isThere = true;
+                }
+                counter2++;
+            }
+            if (isThere == false) {
+                listNamaKamar[j] = listRoom.get(counter).getTipeKamar();
+                j++;
+            }
+            counter2 = 0;
+        }
+        return listNamaKamar;
+    }
+    
+    public static int getBatasGuest(int idKamar) {
+        conn.connect();
+        String query = "SELECT * FROM room WHERE idKamar='" + idKamar + "'";
+        try {
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                Hotel a = new Hotel();
+                return rs.getInt("batasGuest");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return -1;
+    }
 }

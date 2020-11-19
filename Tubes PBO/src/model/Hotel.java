@@ -5,6 +5,8 @@
  */
 package model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author
@@ -15,16 +17,40 @@ package model;
  * 
  */
 public class Hotel {
+    private int idHotel;
     private String lokasi;
     private String namaHotel;
+    private ArrayList<Room> listRoom;
     
-    public Hotel(String lokasi, String namaHotel){
+    public Hotel(int idHotel,String lokasi, String namaHotel, ArrayList<Room> listRoom){
+        this.idHotel = idHotel;
         this.lokasi = lokasi;
         this.namaHotel = namaHotel;
+        this.listRoom = listRoom;
+    }
+
+    public Hotel() {
+        
+    }
+
+    public int getIdHotel() {
+        return idHotel;
+    }
+
+    public void setIdHotel(int idHotel) {
+        this.idHotel = idHotel;
     }
     
     public String getLokasi(){
         return lokasi;
+    }
+
+    public ArrayList<Room> getListRoom() {
+        return listRoom;
+    }
+
+    public void setListRoom(ArrayList<Room> listRoom) {
+        this.listRoom = listRoom;
     }
     
     public void setLokasi(String lokasi) {

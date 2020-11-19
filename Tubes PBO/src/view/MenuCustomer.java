@@ -81,6 +81,7 @@ public class MenuCustomer implements ActionListener{
                 break;
             case "Reschedule":
                 layoutCustomer.dispose();
+                new MenuReschedule();
                 break;
             case "Cancel Booking":
                 layoutCustomer.dispose();
