@@ -112,7 +112,7 @@ public class MenuLogin implements ActionListener{
                         new MenuLogin();
                     } else if (PersonManager.getInstance().getPerson().getTipePerson() == TipePersonEnum.CUSTOMER) {
                         loginPage.dispose();
-                        new MenuRegister();
+                        new MenuCustomer();
                     } else {
                         loginPage.dispose();
                         new MenuUtama();
