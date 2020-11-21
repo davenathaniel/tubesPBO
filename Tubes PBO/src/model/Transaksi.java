@@ -6,6 +6,7 @@
 package model;
 
 import java.util.Date;
+import model.enums.StatusBookingEnum;
 
 /**
  *
@@ -19,26 +20,42 @@ import java.util.Date;
 public class Transaksi {
     private int idTransaksi;
     private int no_Kamar;
-    private int idUser;
+    private int idPerson;
     private Date tanggal_Booking;
     private Date checkIn;
     private Date checkOut;
     private int jumlahOrang;
     private int idJenisPembayaran;
+    private int idHotel;
+    private StatusBookingEnum status; 
 
     public Transaksi(){
     
     }
     
-    public Transaksi(int idTransaksi, int no_Kamar, int idUser, Date tanggal_Booking, Date checkIn, Date checkOut, int jumlahOrang, int idJenisPembayaran) {
+    public Transaksi(int idTransaksi, int idHotel, int idPerson, Date tanggal_Booking, Date checkIn, Date checkOut, int jumlahOrang, int idJenisPembayaran, int no_Kamar, StatusBookingEnum status) {
         this.idTransaksi = idTransaksi;
         this.no_Kamar = no_Kamar;
-        this.idUser = idUser;
+        this.idPerson = idPerson;
         this.tanggal_Booking = tanggal_Booking;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
         this.jumlahOrang = jumlahOrang;
         this.idJenisPembayaran = idJenisPembayaran;
+        this.idHotel = idHotel;
+        this.status = status;
+    }
+    
+    public Transaksi(int no_Kamar, int idPerson, Date tanggal_Booking, Date checkIn, Date checkOut, int jumlahOrang, int idJenisPembayaran, int idHotel, StatusBookingEnum status) {
+        this.no_Kamar = no_Kamar;
+        this.idPerson = idPerson;
+        this.tanggal_Booking = tanggal_Booking;
+        this.checkIn = checkIn;
+        this.checkOut = checkOut;
+        this.jumlahOrang = jumlahOrang;
+        this.idJenisPembayaran = idJenisPembayaran;
+        this.idHotel = idHotel;
+        this.status = status;
     }
 
     public int getIdTransaksi() {
@@ -57,12 +74,28 @@ public class Transaksi {
         this.no_Kamar = no_Kamar;
     }
 
-    public int getIdUser() {
-        return idUser;
+    public int getIdPerson() {
+        return idPerson;
     }
 
-    public void setIdUser(int idUser) {
-        this.idUser = idUser;
+    public void setIdPerson(int idPerson) {
+        this.idPerson = idPerson;
+    }
+
+    public int getIdHotel() {
+        return idHotel;
+    }
+
+    public void setIdHotel(int idHotel) {
+        this.idHotel = idHotel;
+    }
+
+    public void setStatus(StatusBookingEnum status) {
+        this.status = status;
+    }
+
+    public StatusBookingEnum getStatus() {
+        return status;
     }
 
     public Date getTanggal_Booking() {
