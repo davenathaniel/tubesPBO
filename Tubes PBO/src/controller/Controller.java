@@ -274,4 +274,29 @@ public class Controller {
         }
         return -1;
     }
+    
+    //Booking Kamar
+    public static boolean booking(Transaksi trans){
+        
+        conn.connect();
+        String query = "INSERT INTO bookingtransaksi (tanggalBooking, CheckIn, CheckOut, jumlahOrang, noKamar, idPerson, idJenis, idHotel, status) VALUES (?,?,?,?,?,?,?,?,?)";
+        try {
+            PreparedStatement stmt = conn.con.prepareStatement(query);
+            stmt.setDate(1, new java.sql.Date(trans.getTanggal_Booking().getTime()));
+            stmt.setDate(2, new java.sql.Date(trans.getCheckIn().getTime()));
+            stmt.setDate(3, new java.sql.Date(trans.getCheckOut().getTime()));
+            stmt.setInt(4, trans.getJumlahOrang());
+            stmt.setInt(5, trans.getNo_Kamar());
+            stmt.setInt(6, trans.getIdPerson());
+            stmt.setInt(7, trans.getIdJenisPembayaran());
+            stmt.setInt(8, trans.getIdHotel());
+            stmt.setString(9, String.valueOf(model.enums.StatusBookingEnum.BOOKED));
+            stmt.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+        
+    }
 }
