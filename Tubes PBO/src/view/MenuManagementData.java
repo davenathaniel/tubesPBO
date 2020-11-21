@@ -104,7 +104,7 @@ public class MenuManagementData implements ActionListener {
         hargaLabel2 = new JLabel("Harga  :");
         hargaLabel2.setBounds(10, 130, 150, 40);
         harga2 = new JTextField();
-        harga2.setBounds(180, 190, 350, 40);
+        harga2.setBounds(180, 130, 350, 40);
         harga2.setBorder(null);
 
         createButton = new JButton("CREATE");
