@@ -64,14 +64,12 @@ public class MenuAdmin implements ActionListener{
         String buttonClick = e.getActionCommand();
         switch(buttonClick){
             case "History":
-                JFrame f1;    
-                f1 = new JFrame();  
-                JOptionPane.showMessageDialog(f1, "Feature Coming Soon!", "Alert",JOptionPane.WARNING_MESSAGE);
+                layoutAdmin.dispose();
+                new MenuHistory();
                 break;
             case "Management Data":
-                JFrame f2;
-                f2 = new JFrame();  
-                JOptionPane.showMessageDialog(f2, "Feature Coming Soon!", "Alert",JOptionPane.WARNING_MESSAGE);
+                layoutAdmin.dispose();
+                new MenuManagementData();
                 break;    
             case "Logout":
                 int jawab = JOptionPane.showOptionDialog(null, 
