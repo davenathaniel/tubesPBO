@@ -17,13 +17,13 @@ package model;
 public class Room {
     private String tipeKamar;
     private int noKamar;
-    private int jumlahOrang;
+    private int batasOrang;
     private int harga;
     
     public Room(String tipeKamar,int noKamar, int jumlahOrang, int harga){
         this.tipeKamar = tipeKamar;
         this.noKamar = noKamar;
-        this.jumlahOrang = jumlahOrang;
+        this.batasOrang = batasOrang;
         this.harga = harga;
     }
 
@@ -54,11 +54,11 @@ public class Room {
         this.noKamar = noKamar;
     }
     
-    public int getJumlahOrang(){
-        return jumlahOrang;
+    public int getBatasOrang(){
+        return batasOrang;
     }
     
-    public void setLokasi(int jumlahOrang) {
-        this.jumlahOrang = jumlahOrang;
+    public void setLokasi(int batasOrang) {
+        this.batasOrang = batasOrang;
     }
 }

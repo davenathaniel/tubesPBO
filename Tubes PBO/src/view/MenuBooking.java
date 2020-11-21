@@ -6,12 +6,15 @@
 package view;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
+import java.awt.event.*;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.Properties;
 import javax.swing.*;
+import model.PersonManager;
+import model.Room;
+import model.Transaksi;
+import model.enums.StatusBookingEnum;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
@@ -23,9 +26,9 @@ import org.jdatepicker.impl.UtilDateModel;
 public class MenuBooking implements ActionListener, ItemListener{
     JFrame layoutBooking = new JFrame("Menu Booking");
     JLabel title, labelHotel, labelTipeKamar, labelJumlahGuest, labelTanggalCheckIn, labelTanggalCheckOut, labelJumlahKamar;
-    JTextField jumlahGuest, jumlahKamar;
     JComboBox cabangHotel, tipeKamar;
     JButton buttonSubmit, buttonCancel;
+    JSpinner jumlahGuest, jumlahKamar;
     JPanel dataPanel;
     JDatePickerImpl datePicker1, datePicker2;
     UtilDateModel model1, model2;
@@ -75,7 +78,8 @@ public class MenuBooking implements ActionListener, ItemListener{
         labelJumlahGuest.setBounds(650, 130,200,50);
         labelJumlahGuest.setFont(formFont);
         
-        jumlahGuest = new JTextField();
+        SpinnerModel value1 = new SpinnerNumberModel(0, 0, 10, 1);
+        jumlahGuest = new JSpinner(value1);
         jumlahGuest.setBounds(900, 130,300,50);
         jumlahGuest.setFont(formFont);
         
@@ -112,7 +116,9 @@ public class MenuBooking implements ActionListener, ItemListener{
         labelJumlahKamar = new JLabel("Jumlah Kamar");
         labelJumlahKamar.setBounds(650, 320, 200,50);
         labelJumlahKamar.setFont(formFont);
-        jumlahKamar = new JTextField();
+        
+        SpinnerModel value2 = new SpinnerNumberModel(0, 0, 10, 1);
+        jumlahKamar = new JSpinner(value2);
         jumlahKamar.setBounds(900, 320,300,50);
         jumlahKamar.setFont(formFont);
         
@@ -155,6 +161,7 @@ public class MenuBooking implements ActionListener, ItemListener{
         switch(buttonClick){
             case "Submit" :
                 layoutBooking.dispose();
+                booking();
                 break;
             case "Cancel":
                 layoutBooking.dispose();
@@ -181,4 +188,48 @@ public class MenuBooking implements ActionListener, ItemListener{
         }
     }
     
+    public void booking(){
+        int jumlahGuest = (int) this.jumlahGuest.getValue();
+        int jumlahKamar = (int) this.jumlahKamar.getValue();
+        String checkInStr = this.datePicker1.getJFormattedTextField().getText();
+        String checkOutStr = this.datePicker2.getJFormattedTextField().getText();
+        java.sql.Date checkIn = null, checkOut = null;
+        checkIn = java.sql.Date.valueOf(checkInStr);
+        checkOut = java.sql.Date.valueOf(checkOutStr);
+        //int lamaInap = checkOut.compareTo(checkIn);
+        int x = JOptionPane.showConfirmDialog(null, "Are you sure?");
+        if(x == JOptionPane.YES_OPTION){
+            if(checkIn == null || checkOut == null || jumlahGuest == 0 || jumlahKamar == 0){
+                JOptionPane.showMessageDialog(null, "Input all the data!", "Alert", JOptionPane.WARNING_MESSAGE);
+            }else{
+                Transaksi trans = new Transaksi();
+                trans.setTanggal_Booking(new Date());
+                trans.setIdHotel(controller.Controller.getHotelIDbyName(String.valueOf(cabangHotel.getSelectedItem())));
+                trans.setIdPerson(PersonManager.getInstance().getPerson().getIdPerson());
+                trans.setJumlahOrang(jumlahGuest);
+                int idHotel = controller.Controller.getHotelIDbyName(String.valueOf(cabangHotel.getSelectedItem()));
+                ArrayList listRoomKosong = controller.RoomController.cekRoomKosong(idHotel, String.valueOf(tipeKamar.getSelectedItem()));
+                if(listRoomKosong.isEmpty()){
+                    JOptionPane.showMessageDialog(null, "Room Full! Please select another room", "Alert", JOptionPane.WARNING_MESSAGE);
+                }else{
+                    Room kamar = (Room) listRoomKosong.remove(0);
+                    trans.setNo_Kamar(kamar.getNoKamar());
+                    trans.setCheckIn(checkIn);
+                    trans.setCheckOut(checkOut);
+                    trans.setStatus(StatusBookingEnum.BOOKED);
+                    if(jumlahGuest > kamar.getBatasOrang()){
+                        JOptionPane.showMessageDialog(null, "Sorry we only permit " + kamar.getBatasOrang() + " in one room", "Alert", JOptionPane.WARNING_MESSAGE);
+                    }else{
+                        if(controller.Controller.booking(trans)){
+                            JOptionPane.showMessageDialog(null, "Please pay to confirm your booking");
+                            layoutBooking.dispose();
+                            new MenuBooking();
+                        }else {
+                            JOptionPane.showMessageDialog(null, "Data can't be inserted!", "Alert", JOptionPane.WARNING_MESSAGE);
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
