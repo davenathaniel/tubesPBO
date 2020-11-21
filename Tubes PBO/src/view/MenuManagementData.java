@@ -35,7 +35,7 @@ public class MenuManagementData implements ActionListener {
     public MenuManagementData() {
         managementDataFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        judul = new JLabel("Room Management ~");
+        judul = new JLabel("Room Management");
         judul.setBounds(20, 10, 500, 40);
 
         filterLabel = new JLabel("Choose Hotel : ");
@@ -80,7 +80,7 @@ public class MenuManagementData implements ActionListener {
         noKamarLabel2 = new JLabel("Nomor Kamar  :");
         noKamarLabel2.setBounds(10, 10, 200, 40);
         noKamar = new JTextField();
-        noKamar.setBounds(230, 10, 350, 40);
+        noKamar.setBounds(180, 10, 350, 40);
         noKamar.setBorder(null);
 
         tipeLabel = new JLabel("Tipe :");
@@ -96,13 +96,13 @@ public class MenuManagementData implements ActionListener {
         tipe2.setBorder(null);
 
         hargaLabel = new JLabel("Harga  :");
-        hargaLabel.setBounds(10, 190, 150, 40);
+        hargaLabel.setBounds(10, 130, 150, 40);
         harga = new JTextField();
         harga.setBounds(180, 190, 350, 40);
         harga.setBorder(null);
 
         hargaLabel2 = new JLabel("Harga  :");
-        hargaLabel2.setBounds(10, 190, 150, 40);
+        hargaLabel2.setBounds(10, 130, 150, 40);
         harga2 = new JTextField();
         harga2.setBounds(180, 190, 350, 40);
         harga2.setBorder(null);
