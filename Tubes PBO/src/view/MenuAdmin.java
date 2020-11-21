@@ -64,9 +64,11 @@ public class MenuAdmin implements ActionListener{
         String buttonClick = e.getActionCommand();
         switch(buttonClick){
             case "History":
+                layoutAdmin.dispose();
                 new MenuHistory();
                 break;
             case "Management Data":
+                layoutAdmin.dispose();
                 new MenuManagementData();
                 break;    
             case "Logout":
