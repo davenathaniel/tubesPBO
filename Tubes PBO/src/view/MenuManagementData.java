@@ -60,7 +60,7 @@ public class MenuManagementData implements ActionListener {
         });
 
         filterRoom = new JComboBox();
-        filterRoom.setBounds(230, 10, 350, 40);
+        filterRoom.setBounds(180, 10, 350, 40);
         filterRoom.addItem("Choose Room");
         for (int i = 0; i < DataController.listCabangHotel.get(idH - 1).getListRoom().size(); i++) {
             filterRoom.addItem(DataController.listCabangHotel.get(idH - 1).getListRoom().get(i).getNoKamar());
