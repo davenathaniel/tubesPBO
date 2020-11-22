@@ -17,6 +17,14 @@ package model;
 public class JenisPembayaran {
     private int idJenisPembayaran;
     private String jenisPembayaran;
+    
+    public JenisPembayaran(){
+        
+    }
+
+    public String getJenisPembayaran() {
+        return jenisPembayaran;
+    }
 
     public JenisPembayaran(int idJenisPembayaran, String jenisPembayaran) {
         this.idJenisPembayaran = idJenisPembayaran;
