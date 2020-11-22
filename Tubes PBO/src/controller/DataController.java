@@ -7,6 +7,8 @@ package controller;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.*;
 
 /**
@@ -50,5 +52,25 @@ public class DataController {
             e.printStackTrace();
         }
         return listRoom;
+    }
+    
+    //Select data semua Jenis Pembayaran
+    public static ArrayList<JenisPembayaran> getAllJenisPembayaran(){
+        ArrayList<JenisPembayaran> pembayaran = new ArrayList<>();
+        conn.connect();
+        String query = "SELECT * FROM jenispembayaran";
+        try {
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()){
+                JenisPembayaran jenis = new JenisPembayaran();
+                jenis.setIdJenisPembayaran(rs.getInt("idJenis"));
+                jenis.setJenisPembayaran(rs.getString("jenis"));
+                pembayaran.add(jenis);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return (pembayaran);
     }
 }
