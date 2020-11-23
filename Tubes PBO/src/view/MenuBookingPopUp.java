@@ -17,7 +17,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
-import model.PersonManager;
 import model.TransaksiManager;
 
 /**
@@ -44,7 +43,7 @@ public class MenuBookingPopUp implements ActionListener {
 
         int height = 60;
         int j = 0;
-        for (int i = 1; i < DataController.listJenisPembayaran.size(); i++) {
+        for (int i = 0; i < DataController.listJenisPembayaran.size(); i++) {
             String jenisBayar = DataController.listJenisPembayaran.get(i).getJenisPembayaran();
             listRButtonPembayaran.add(new JRadioButton(jenisBayar));
             listRButtonPembayaran.get(j).setBounds(20, height, 200, 30);
@@ -92,6 +91,7 @@ public class MenuBookingPopUp implements ActionListener {
             boolean pilihan = false;
             for (int i = 0; i < listRButtonPembayaran.size(); i++) {
                 if (listRButtonPembayaran.get(i).isSelected()) {
+                    TransaksiManager.getInstance().getTransaction().setIdJenisPembayaran(i + 1);
                     pilihan = true;
                     break;
                 }

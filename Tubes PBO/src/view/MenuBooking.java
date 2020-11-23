@@ -195,6 +195,7 @@ public class MenuBooking implements ActionListener, ItemListener{
         }
         java.sql.Date checkInDate = new java.sql.Date(checkIn.getTime());
         java.sql.Date checkOutDate = new java.sql.Date(checkOut.getTime());
+        
         int x = JOptionPane.showConfirmDialog(null, "Are you sure?");
         if(x == JOptionPane.YES_OPTION){
             if(checkInDate == null || checkOutDate == null || jumlahGuest == 0){
@@ -209,6 +210,7 @@ public class MenuBooking implements ActionListener, ItemListener{
                 ArrayList listRoomKosong = controller.RoomController.cekRoomKosong(idHotel, String.valueOf(tipeKamar.getSelectedItem()));
                 if(listRoomKosong.isEmpty()){
                     JOptionPane.showMessageDialog(null, "Room Full! Please select another room", "Alert", JOptionPane.WARNING_MESSAGE);
+                    new MenuBooking();
                 }else{
                     Room kamar = (Room) listRoomKosong.remove(0);
                     trans.setNo_Kamar(kamar.getNoKamar());

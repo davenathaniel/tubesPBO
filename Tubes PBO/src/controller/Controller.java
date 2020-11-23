@@ -279,7 +279,7 @@ public class Controller {
     public static boolean booking(Transaksi trans){
         
         conn.connect();
-        String query = "INSERT INTO bookingtransaksi (idPerson,idHotel,jumlahOrang,tanggalBooking,noKamar,checkIn,checkOut,status) VALUES (?,?,?,?,?,?,?,?)";
+        String query = "INSERT INTO bookingtransaksi (idPerson,idHotel,jumlahOrang,tanggalBooking,noKamar,checkIn,checkOut,status, idJenis) VALUES (?,?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement stmt = conn.con.prepareStatement(query);
             stmt.setInt(1, trans.getIdPerson());
@@ -290,6 +290,7 @@ public class Controller {
             stmt.setDate(6, new java.sql.Date(trans.getCheckIn().getTime()));
             stmt.setDate(7, new java.sql.Date(trans.getCheckOut().getTime()));
             stmt.setString(8, String.valueOf(model.enums.StatusBookingEnum.BOOKED));
+            stmt.setInt(9, trans.getIdJenisPembayaran());
             stmt.executeUpdate();
             return true;
         } catch (SQLException e) {
