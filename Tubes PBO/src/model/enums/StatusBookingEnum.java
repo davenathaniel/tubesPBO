@@ -7,7 +7,10 @@ package model.enums;
 
 /**
  *
- * @author User
+ * @author 
+ * 1119001 Dave Nathaniel K
+ * 1119035 Maria Vabiolla V
+ * 1119043 Tridia Enjeliani S M
  */
 public enum StatusBookingEnum {
     BOOKED("BOOKED"), CHECKEDIN("CHECKEDIN"), CHECKEDOUT("CHECKEDOUT"), CANCELLED("CANCELLED");

@@ -13,34 +13,36 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 /**
- *
- * @author Dave
+ * 1119001 Dave Nathaniel K
+ * 1119035 Maria Vabiolla V
+ * 1119043 Tridia Enjeliani S M
  */
 public class MenuHistory implements ActionListener{
     JFrame historyFrame = new JFrame("History Menu");
     JLabel title, judul;
     JTable table;
     JPanel dataPanel;
-    JButton back = new JButton("Back");
-    Font formFont = new Font("Arial",Font.PLAIN,20);
+    JButton back;
     
     public MenuHistory(){
         historyFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         historyFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        historyFrame.getContentPane().setBackground(new Color(203,202,250));
+        historyFrame.getContentPane().setBackground(StyleSheet.backgroundColor);
         
         title = new JLabel("H I S T O R Y    M E N U",JLabel.CENTER);
         title.setBounds(0,0, (int)Toolkit.getDefaultToolkit().getScreenSize().getWidth(),(int)Toolkit.getDefaultToolkit().getScreenSize().getHeight()/5);
-        title.setFont(new Font("Impact",Font.PLAIN,50));
+        title.setFont(StyleSheet.titleFont);
         
         judul = new JLabel("Daftar Transaksi : ");
         judul.setBounds(650, 150, 200, 100);
-        judul.setFont(formFont);
+        judul.setFont(StyleSheet.formFont);
         
         dataPanel = new JPanel();
         dataPanel.setLayout(null);
         
+        back = new JButton("Back");
         back.setBounds(650, 600, 100, 50);
+        back.setFont(StyleSheet.formFont);
         back.addActionListener(this);
         
         historyFrame.add(back);

@@ -15,77 +15,49 @@ import model.Room;
 import model.TransaksiManager;
 import model.enums.StatusBookingEnum;
 /**
- *
- * @author maria
+ * 1119001 Dave Nathaniel K
+ * 1119035 Maria Vabiolla V
+ * 1119043 Tridia Enjeliani S M
  */
-public class MenuCheckIn implements ActionListener, ItemListener{
+public class MenuCheckIn implements ActionListener{
     JFrame layoutCheckIn = new JFrame("Check-In Menu");
     JLabel title, labelBooking, labelNamaHotel;
-    Font formFont = new Font("Arial",Font.PLAIN,20);
-    JComboBox namaHotel;
-    JTable table;
+    JPanel panelInput;
+    JTextField booking;
+    JButton bSubmit;
     
     public MenuCheckIn() {
         layoutCheckIn.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         layoutCheckIn.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        layoutCheckIn.getContentPane().setBackground(new Color(203,202,250));
+        layoutCheckIn.getContentPane().setBackground(StyleSheet.backgroundColor);
         
         title = new JLabel("C h e c k - I n   M e n u",JLabel.CENTER);
         title.setBounds(0,0, (int)Toolkit.getDefaultToolkit().getScreenSize().getWidth(),(int)Toolkit.getDefaultToolkit().getScreenSize().getHeight()/5);
-        title.setFont(new Font("Impact",Font.PLAIN,50));
+        title.setFont(StyleSheet.titleFont);
         
-        labelNamaHotel = new JLabel("Nama Hotel");
-        labelNamaHotel.setBounds(700,200,200,50);
-        labelNamaHotel.setFont(formFont);
+        panelInput = new JPanel();
+        panelInput.setLayout(null);
         
-        namaHotel = new JComboBox();
-        namaHotel.setBounds(950, 200, 250, 50);
-        namaHotel.setFont(formFont);
-        namaHotel.addItem("Choose Hotel Name");
-        for (int i = 0; i < controller.DataController.listCabangHotel.size(); i++) {
-            namaHotel.addItem(controller.DataController.listCabangHotel.get(i).getNamaHotel());
-        }
-        namaHotel.addItemListener(this);
+        labelBooking = new JLabel("id Transaksi");
+        labelBooking.setFont(StyleSheet.formFont);
+        labelBooking.setBounds(650,10,200,50);
         
-        DefaultTableModel model = controller.CheckController.getTransactionByStatus(2, StatusBookingEnum.BOOKED);
-        table = new JTable(model);
-        table.setBounds(100, 150, 1200, 500);
-        table.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
-        JScrollPane sp = new JScrollPane(table);
-        sp.setBounds(100, 150, 1200, 500);
-
-        table.setRowSelectionAllowed(true);
-        ListSelectionModel select = table.getSelectionModel();
-        select.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        select.addListSelectionListener(new ListSelectionListener() {
-            @Override
-            public void valueChanged(ListSelectionEvent e) {
-                String Data = null;
-                int row = table.getSelectedRow();
-                Data = (String) table.getValueAt(row, 0);
-                int a = JOptionPane.showOptionDialog(null, "Are you sure?", "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
-                if (a == JOptionPane.YES_OPTION) {
-                    int idTransaksi = Integer.parseInt(Data);
-                    TransaksiManager.getInstance().setTransaction(controller.CheckController.getOneTransaction(idTransaksi));
-                    if (controller.CheckController.updateCheckIn(idTransaksi)) {
-                        TransaksiManager.getInstance().getTransaction().setStatus(StatusBookingEnum.CHECKEDIN);
-                        Room room = controller.CheckController.getDataRoom(TransaksiManager.getInstance().getTransaction().getIdHotel(), TransaksiManager.getInstance().getTransaction().getNo_Kamar());
-                        String str = "ID Transaksi : " + TransaksiManager.getInstance().getTransaction().getIdTransaksi() + "\nRincian Kamar : " + room.toString();
-                        JOptionPane.showMessageDialog(null, str);
-                        layoutCheckIn.dispose();
-                        new MenuReseptionist();
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Check In Failed!", "Alert", JOptionPane.WARNING_MESSAGE);
-                    }
-                }
-            }
-        });
-  
+        booking = new JTextField();
+        booking.setFont(StyleSheet.formFont);
+        booking.setBounds(850,10, 300, 50);
+        
+        bSubmit = new JButton("Submit");
+        bSubmit.setBounds(1180, 10, 100, 50);
+        bSubmit.setFont(StyleSheet.formFont);
+        
+        panelInput.add(labelBooking);
+        panelInput.add(booking);
+        panelInput.add(bSubmit);
+        panelInput.setBounds(0,(int)Toolkit.getDefaultToolkit().getScreenSize().getHeight()/5,(int)Toolkit.getDefaultToolkit().getScreenSize().getWidth(),70 );
+        panelInput.setBackground(StyleSheet.backgroundColor);
         
         layoutCheckIn.add(title);
-        layoutCheckIn.add(labelNamaHotel);
-        layoutCheckIn.add(namaHotel);
-        layoutCheckIn.add(sp);
+        layoutCheckIn.add(panelInput);
         layoutCheckIn.setLayout(null);
         layoutCheckIn.setVisible(true);
     }
@@ -98,19 +70,4 @@ public class MenuCheckIn implements ActionListener, ItemListener{
                 break;
         }
     }
-
-    @Override
-    public void itemStateChanged(ItemEvent e) {
-        int idHotel = 0;
-        for (int i = 0; i < controller.DataController.listCabangHotel.size(); i++) {
-            if (namaHotel.getSelectedItem().equals(controller.DataController.listCabangHotel.get(i).getNamaHotel())) {
-                idHotel = controller.DataController.listCabangHotel.get(i).getIdHotel();
-                break;
-            }
-        }
-        DefaultTableModel model = controller.CheckController.getTransactionByStatus(idHotel, StatusBookingEnum.BOOKED);
-        table.setModel(model);
-    }
-    
-    
 }

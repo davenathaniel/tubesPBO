@@ -22,10 +22,13 @@ import model.enums.StatusBookingEnum;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
+import static view.StyleSheet.formatter;
 
 /**
  *
- * @author maria
+ * 1119001 Dave Nathaniel K
+ * 1119035 Maria Vabiolla V
+ * 1119043 Tridia Enjeliani S M
  */
 public class MenuBooking implements ActionListener, ItemListener{
     JFrame layoutBooking = new JFrame("Menu Booking");
@@ -185,8 +188,8 @@ public class MenuBooking implements ActionListener, ItemListener{
         int jumlahGuest = (int) this.jumlahGuest.getValue();
         java.util.Date checkIn = null, checkOut = null;
         try{
-            checkIn = new SimpleDateFormat("dd-MM-yyyy").parse(this.datePicker1.getJFormattedTextField().getText());
-            checkOut = new SimpleDateFormat("dd-MM-yyyy").parse(this.datePicker2.getJFormattedTextField().getText());
+            checkIn = formatter.parse(this.datePicker1.getJFormattedTextField().getText());
+            checkOut = formatter.parse(this.datePicker2.getJFormattedTextField().getText());
         }catch (ParseException ex){
             Logger.getLogger(MenuBooking.class.getName()).log(Level.SEVERE, null, ex);
         }
