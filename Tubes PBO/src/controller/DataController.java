@@ -13,7 +13,9 @@ import static model.enums.TipePersonEnum.*;
 
 /**
  *
- * @author maria
+ * 1119001 Dave Nathaniel K
+ * 1119035 Maria Vabiolla V
+ * 1119043 Tridia Enjeliani S M
  */
 public class DataController {
     static DatabaseHandler conn = new DatabaseHandler();

@@ -12,7 +12,9 @@ import java.awt.event.ActionListener;
 
 /**
  *
- * @author Dave
+ * 1119001 Dave Nathaniel K
+ * 1119035 Maria Vabiolla V
+ * 1119043 Tridia Enjeliani S M
  */
 public class MenuAdmin implements ActionListener{
     JFrame layoutAdmin = new JFrame("Menu Admin");
@@ -23,11 +25,11 @@ public class MenuAdmin implements ActionListener{
     public MenuAdmin(){
         layoutAdmin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         layoutAdmin.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        layoutAdmin.getContentPane().setBackground(new Color(203, 202, 250));
+        layoutAdmin.getContentPane().setBackground(StyleSheet.backgroundColor);
         
         title = new JLabel("~ W E L C O M E      A D M I N ! ~",JLabel.CENTER);
         title.setBounds(0, 0, (int)Toolkit.getDefaultToolkit().getScreenSize().getWidth(), (int)Toolkit.getDefaultToolkit().getScreenSize().getHeight()/5);
-        title.setFont(new Font("Impact", Font.PLAIN,50));
+        title.setFont(StyleSheet.titleFont);
         
         buttonPanel = new JPanel();
         buttonPanel.setLayout(null);
@@ -35,23 +37,23 @@ public class MenuAdmin implements ActionListener{
         cekHistory = new JButton("History");
         cekHistory.setBounds(600, 50, 200, 70);
         cekHistory.addActionListener(this);
-        cekHistory.setFont(new Font("Impact", Font.PLAIN, 25));
+        cekHistory.setFont(StyleSheet.buttonFont);
         
         manageData = new JButton("Management Data");
         manageData.setBounds(850, 50, 200, 70);
         manageData.addActionListener(this);
-        manageData.setFont(new Font("Impact", Font.PLAIN, 25));
+        manageData.setFont(StyleSheet.buttonFont);
         
         logOut = new JButton("Logout");
         logOut.setBounds(1100, 50, 200, 70);
         logOut.addActionListener(this);
-        logOut.setFont(new Font("Impact", Font.PLAIN, 25));
+        logOut.setFont(StyleSheet.buttonFont);
         
         buttonPanel.add(cekHistory);
         buttonPanel.add(manageData);
         buttonPanel.add(logOut);
         buttonPanel.setBounds(0, (int)Toolkit.getDefaultToolkit().getScreenSize().getHeight()/5,(int)Toolkit.getDefaultToolkit().getScreenSize().getWidth(),(int)Toolkit.getDefaultToolkit().getScreenSize().getHeight()/5);
-        buttonPanel.setBackground(new Color(203,202,250));
+        buttonPanel.setBackground(StyleSheet.backgroundColor);
         
         layoutAdmin.add(title);
         layoutAdmin.add(buttonPanel);

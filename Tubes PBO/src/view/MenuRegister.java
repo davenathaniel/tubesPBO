@@ -18,7 +18,9 @@ import model.enums.TipePersonEnum;
 
 /**
  *
- * @author maria
+ * 1119001 Dave Nathaniel K
+ * 1119035 Maria Vabiolla V
+ * 1119043 Tridia Enjeliani S M
  */
 public class MenuRegister implements ActionListener {
     JFrame registerForm = new JFrame("Registration Page");
@@ -27,66 +29,65 @@ public class MenuRegister implements ActionListener {
     JPasswordField password;
     JPanel dataPanel;
     JButton registerButton, cancelButton;
-    Font formFont = new Font("Arial",Font.PLAIN,20);
     
     public MenuRegister() {
         registerForm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         registerForm.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        registerForm.getContentPane().setBackground(new Color(203,202,250));
+        registerForm.getContentPane().setBackground(StyleSheet.backgroundColor);
 
         title = new JLabel("R e g i s t r a t i o n    F o r m",JLabel.CENTER);
         title.setBounds(0,0, (int)Toolkit.getDefaultToolkit().getScreenSize().getWidth(),(int)Toolkit.getDefaultToolkit().getScreenSize().getHeight()/5);
-        title.setFont(new Font("Impact",Font.PLAIN,50));
+        title.setFont(StyleSheet.titleFont);
 
         dataPanel = new JPanel();
         dataPanel.setLayout(null);
         
         namaLabel = new JLabel("Nama",JLabel.LEFT);
         namaLabel.setBounds(10,10,150,50);
-        namaLabel.setFont(formFont);
+        namaLabel.setFont(StyleSheet.formFont);
         nama = new JTextField();
         nama.setBounds(180,10,320,50);
-        nama.setFont(formFont);
+        nama.setFont(StyleSheet.formFont);
         
         alamatLabel = new JLabel("Alamat",JLabel.LEFT);
         alamatLabel.setBounds(10,70,150,50);
-        alamatLabel.setFont(formFont);
+        alamatLabel.setFont(StyleSheet.formFont);
         alamat = new JTextField();
         alamat.setBounds(180,70,320,50);
-        alamat.setFont(formFont);
+        alamat.setFont(StyleSheet.formFont);
         
         ktpLabel = new JLabel("NO. KTP",JLabel.LEFT);
         ktpLabel.setBounds(10,130,150,50);
-        ktpLabel.setFont(formFont);
+        ktpLabel.setFont(StyleSheet.formFont);
         ktp = new JTextField();
         ktp.setBounds(180,130,320,50);
-        ktpLabel.setFont(formFont);
+        ktpLabel.setFont(StyleSheet.formFont);
         
         emailLabel = new JLabel("Email",JLabel.LEFT);
         emailLabel.setBounds(10,190,150,50);
-        emailLabel.setFont(formFont);
+        emailLabel.setFont(StyleSheet.formFont);
         email = new JTextField();
         email.setBounds(180,190,320,50);
-        email.setFont(formFont);
+        email.setFont(StyleSheet.formFont);
         
         teleponLabel =  new JLabel("Telepon",JLabel.LEFT);
         teleponLabel.setBounds(10,250,150,50);
-        teleponLabel.setFont(formFont);
+        teleponLabel.setFont(StyleSheet.formFont);
         telepon = new JTextField();
         telepon.setBounds(180,250,320,50);
-        telepon.setFont(formFont);
+        telepon.setFont(StyleSheet.formFont);
         
         message = new JLabel("Username Already Exist");
         message.setBounds(200,560,300,70);
-        message.setFont(formFont);
+        message.setFont(StyleSheet.formFont);
         message.setForeground(Color.red);
         
         usernameLabel = new JLabel("Username",JLabel.LEFT);
         usernameLabel.setBounds(10,310, 150,50);
-        usernameLabel.setFont(formFont);
+        usernameLabel.setFont(StyleSheet.formFont);
         username = new JTextField();
         username.setBounds(180,310,320,50);
-        username.setFont(formFont);
+        username.setFont(StyleSheet.formFont);
         username.getDocument().addDocumentListener(new DocumentListener(){
             @Override
             public void insertUpdate(DocumentEvent e) {
@@ -118,20 +119,20 @@ public class MenuRegister implements ActionListener {
         
         passwordLabel = new JLabel("Password",JLabel.LEFT);
         passwordLabel.setBounds(10,370,150,50);
-        passwordLabel.setFont(formFont);
+        passwordLabel.setFont(StyleSheet.formFont);
         password = new JPasswordField();
         password.setBounds(180,370,320,50);
-        password.setFont(formFont);
+        password.setFont(StyleSheet.formFont);
         
         cancelButton = new JButton("Cancel");
         cancelButton.setBounds(30,480,150,70);
-        cancelButton.setFont(formFont);
+        cancelButton.setFont(StyleSheet.formFont);
         cancelButton.addActionListener(this);
-        cancelButton.setBackground(new Color(255, 179, 179));
+        cancelButton.setBackground(StyleSheet.cancelButtonColor);
         
         registerButton = new JButton("Register");
         registerButton.setBounds(320,480,150,70);
-        registerButton.setFont(formFont);
+        registerButton.setFont(StyleSheet.formFont);
         registerButton.addActionListener(this);
         
         dataPanel.add(namaLabel);
@@ -151,7 +152,7 @@ public class MenuRegister implements ActionListener {
         dataPanel.add(cancelButton);
         dataPanel.add(registerButton);
         dataPanel.setBounds(710, (int)Toolkit.getDefaultToolkit().getScreenSize().getHeight()/5,500,700);
-        dataPanel.setBackground(new Color(203,202,250));
+        dataPanel.setBackground(StyleSheet.backgroundColor);
         
         registerForm.add(title);
         registerForm.add(dataPanel);
