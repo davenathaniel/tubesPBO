@@ -15,12 +15,12 @@ package main;
  * 
  */
 import controller.Controller;
-import view.MenuUtama;
+import view.*;
 
 public class Main {
     static Controller controller = new Controller();
 
     public static void main(String[] args) {
-        new MenuUtama();
+        new MenuLogin();
     }
 }
