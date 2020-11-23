@@ -20,7 +20,7 @@ public class Room {
     private int batasOrang;
     private int harga;
     
-    public Room(String tipeKamar,int noKamar, int jumlahOrang, int harga){
+    public Room(String tipeKamar,int noKamar, int batasOrang, int harga){
         this.tipeKamar = tipeKamar;
         this.noKamar = noKamar;
         this.batasOrang = batasOrang;

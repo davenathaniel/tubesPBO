@@ -57,7 +57,7 @@ public class RoomController {
     public static boolean cekTransaksi(int idHotel, int noKamar, Date date){
         conn.connect();
         boolean isExist = false;
-        String query = "SELECT * FROM bookingtransaksi WHERE idHotel = " + idHotel + "AND noKamar = " + noKamar + "AND (status = '" + StatusBookingEnum.BOOKED.toString() + "' OR status = '" + StatusBookingEnum.CHECKEDIN.toString() + "')" + " AND checkIn <= '" + date + "'";
+        String query = "SELECT * FROM bookingtransaksi WHERE idHotel = " + idHotel + " AND noKamar = " + noKamar + " AND (status = '" + StatusBookingEnum.BOOKED.toString() + "' OR status = '" + StatusBookingEnum.CHECKEDIN.toString() + "')" + " AND checkIn <= '" + date + "'";
         try {
             Statement stmt = conn.con.createStatement();
             ResultSet rs = stmt.executeQuery(query);

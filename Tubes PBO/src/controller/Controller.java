@@ -46,7 +46,7 @@ public class Controller {
                         person.setTipePerson(CUSTOMER);
                         break;
                     case 1:
-                        person = new Receptionist(rs.getInt("idCabang"), rs.getInt("salary"), rs.getInt("absensi"));
+                        person = new Receptionist();
                         person.setTipePerson(RECEPTIONIST);
                         break;
                     case 2:
@@ -279,18 +279,17 @@ public class Controller {
     public static boolean booking(Transaksi trans){
         
         conn.connect();
-        String query = "INSERT INTO bookingtransaksi (tanggalBooking, CheckIn, CheckOut, jumlahOrang, noKamar, idPerson, idJenis, idHotel, status) VALUES (?,?,?,?,?,?,?,?,?)";
+        String query = "INSERT INTO bookingtransaksi (idPerson,idHotel,jumlahOrang,tanggalBooking,noKamar,checkIn,checkOut,status) VALUES (?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement stmt = conn.con.prepareStatement(query);
-            stmt.setDate(1, new java.sql.Date(trans.getTanggal_Booking().getTime()));
-            stmt.setDate(2, new java.sql.Date(trans.getCheckIn().getTime()));
-            stmt.setDate(3, new java.sql.Date(trans.getCheckOut().getTime()));
-            stmt.setInt(4, trans.getJumlahOrang());
+            stmt.setInt(1, trans.getIdPerson());
+            stmt.setInt(2, trans.getIdHotel());
+            stmt.setInt(3, trans.getJumlahOrang());
+            stmt.setDate(4, new java.sql.Date(trans.getTanggal_Booking().getTime()));
             stmt.setInt(5, trans.getNo_Kamar());
-            stmt.setInt(6, trans.getIdPerson());
-            stmt.setInt(7, trans.getIdJenisPembayaran());
-            stmt.setInt(8, trans.getIdHotel());
-            stmt.setString(9, String.valueOf(model.enums.StatusBookingEnum.BOOKED));
+            stmt.setDate(6, new java.sql.Date(trans.getCheckIn().getTime()));
+            stmt.setDate(7, new java.sql.Date(trans.getCheckOut().getTime()));
+            stmt.setString(8, String.valueOf(model.enums.StatusBookingEnum.BOOKED));
             stmt.executeUpdate();
             return true;
         } catch (SQLException e) {

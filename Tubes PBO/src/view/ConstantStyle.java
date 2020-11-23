@@ -18,7 +18,6 @@ import java.util.Locale;
  */
 public class ConstantStyle {
 
-    public static Image icon = Toolkit.getDefaultToolkit().getImage(ConstantStyle.class.getResource("../../asset/img/hotel.jpg"));
     public static Font bigger = new Font("Verdana", Font.PLAIN, 45);
     public static Font big = new Font("Verdana", Font.PLAIN, 30);
     public static Font normal = new Font("Verdana", Font.PLAIN, 20);
