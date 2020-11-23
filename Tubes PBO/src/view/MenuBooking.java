@@ -223,7 +223,7 @@ public class MenuBooking implements ActionListener, ItemListener{
                         if(controller.Controller.booking(trans)){
                             JOptionPane.showMessageDialog(null, "Please pay to confirm your booking");
                             layoutBooking.dispose();
-                            new MenuBooking();
+                            new MenuBookingPopUp();
                         }else {
                             JOptionPane.showMessageDialog(null, "Data can't be inserted!", "Alert", JOptionPane.WARNING_MESSAGE);
                         }

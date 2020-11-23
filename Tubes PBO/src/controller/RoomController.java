@@ -69,4 +69,19 @@ public class RoomController {
         }
         return (isExist);
     }
+    
+    public static String getRoomTypebyRN(int RN) {
+        conn.connect();
+        String query = "SELECT * FROM room WHERE noKamar='" + RN + "'";
+        try {
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                return rs.getString("tipe");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
 }
