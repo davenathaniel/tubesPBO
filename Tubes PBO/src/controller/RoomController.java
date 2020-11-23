@@ -57,7 +57,7 @@ public class RoomController {
     public static boolean cekTransaksi(int idHotel, int noKamar, Date date){
         conn.connect();
         boolean isExist = false;
-        String query = "SELECT * FROM bookingtransaksi WHERE idHotel = " + idHotel + "AND noKamar = " + noKamar + "AND (status = '" + StatusBookingEnum.BOOKED.toString() + "' OR status = '" + StatusBookingEnum.CHECKEDIN.toString() + "')" + " AND checkIn <= '" + date + "'";
+        String query = "SELECT * FROM bookingtransaksi WHERE idHotel = " + idHotel + " AND noKamar = " + noKamar + " AND (status = '" + StatusBookingEnum.BOOKED.toString() + "' OR status = '" + StatusBookingEnum.CHECKEDIN.toString() + "')" + " AND checkIn <= '" + date + "'";
         try {
             Statement stmt = conn.con.createStatement();
             ResultSet rs = stmt.executeQuery(query);
@@ -68,5 +68,20 @@ public class RoomController {
             e.printStackTrace();
         }
         return (isExist);
+    }
+    
+    public static String getRoomTypebyRN(int RN) {
+        conn.connect();
+        String query = "SELECT * FROM room WHERE noKamar='" + RN + "'";
+        try {
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                return rs.getString("tipe");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return "";
     }
 }

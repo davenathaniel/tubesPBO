@@ -18,6 +18,8 @@ public class JenisPembayaran {
     private int idJenisPembayaran;
     private String jenisPembayaran;
 
+    public JenisPembayaran(){}
+    
     public JenisPembayaran(int idJenisPembayaran, String jenisPembayaran) {
         this.idJenisPembayaran = idJenisPembayaran;
         this.jenisPembayaran = jenisPembayaran;
@@ -33,6 +35,10 @@ public class JenisPembayaran {
 
     public void setJenisPembayaran(String jenisPembayaran) {
         this.jenisPembayaran = jenisPembayaran;
+    }
+
+    public String getJenis() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     

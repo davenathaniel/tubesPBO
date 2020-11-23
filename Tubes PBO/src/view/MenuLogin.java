@@ -109,7 +109,7 @@ public class MenuLogin implements ActionListener{
                         new MenuAdmin();
                     } else if (PersonManager.getInstance().getPerson().getTipePerson() == TipePersonEnum.RECEPTIONIST) {
                         loginPage.dispose();
-                        new MenuLogin();
+                        new MenuReseptionist();
                     } else if (PersonManager.getInstance().getPerson().getTipePerson() == TipePersonEnum.CUSTOMER) {
                         loginPage.dispose();
                         new MenuCustomer();
