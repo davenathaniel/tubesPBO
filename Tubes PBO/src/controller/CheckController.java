@@ -5,10 +5,7 @@
  */
 package controller;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.text.SimpleDateFormat;
 import javax.swing.table.DefaultTableModel;
 import model.Hotel;
@@ -17,11 +14,13 @@ import model.Transaksi;
 import model.TransaksiManager;
 import model.enums.StatusBookingEnum;
 import static model.enums.StatusBookingEnum.*;
-import static view.ConstantStyle.formatter;
+import static view.StyleSheet.formatter;
 
 /**
  *
- * @author Dave
+ * 1119001 Dave Nathaniel K
+ * 1119035 Maria Vabiolla V
+ * 1119043 Tridia Enjeliani S M
  */
 public class CheckController {
 

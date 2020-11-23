@@ -11,8 +11,9 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 /**
- *
- * @author maria
+ * 1119001 Dave Nathaniel K
+ * 1119035 Maria Vabiolla V
+ * 1119043 Tridia Enjeliani S M
  */
 public class MenuCheckOut implements ActionListener {
     JFrame layoutCheckIn = new JFrame("Check-Out Menu");
@@ -20,37 +21,36 @@ public class MenuCheckOut implements ActionListener {
     JTextField booking;
     JButton bSubmit;
     JPanel panelInput, panelOutput;
-    Font formFont = new Font("Arial",Font.PLAIN,20);
     
     public MenuCheckOut() {
         layoutCheckIn.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         layoutCheckIn.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        layoutCheckIn.getContentPane().setBackground(new Color(203,202,250));
+        layoutCheckIn.getContentPane().setBackground(StyleSheet.backgroundColor);
         
         title = new JLabel("C h e c k - O u t   M e n u",JLabel.CENTER);
         title.setBounds(0,0, (int)Toolkit.getDefaultToolkit().getScreenSize().getWidth(),(int)Toolkit.getDefaultToolkit().getScreenSize().getHeight()/5);
-        title.setFont(new Font("Impact",Font.PLAIN,50));
+        title.setFont(StyleSheet.titleFont);
         
         panelInput = new JPanel();
         panelInput.setLayout(null);
         
-        labelBooking = new JLabel("Nomor Booking");
-        labelBooking.setFont(formFont);
+        labelBooking = new JLabel("id Transaksi");
+        labelBooking.setFont(StyleSheet.formFont);
         labelBooking.setBounds(650,10,200,50);
         
         booking = new JTextField();
-        booking.setFont(formFont);
+        booking.setFont(StyleSheet.formFont);
         booking.setBounds(850,10, 300, 50);
         
         bSubmit = new JButton("Submit");
         bSubmit.setBounds(1180, 10, 100, 50);
-        bSubmit.setFont(formFont);
+        bSubmit.setFont(StyleSheet.formFont);
         
         panelInput.add(labelBooking);
         panelInput.add(booking);
         panelInput.add(bSubmit);
         panelInput.setBounds(0,(int)Toolkit.getDefaultToolkit().getScreenSize().getHeight()/5,(int)Toolkit.getDefaultToolkit().getScreenSize().getWidth(),70 );
-        panelInput.setBackground(new Color(203,202,250));
+        panelInput.setBackground(StyleSheet.backgroundColor);
         
         layoutCheckIn.add(title);
         layoutCheckIn.add(panelInput);

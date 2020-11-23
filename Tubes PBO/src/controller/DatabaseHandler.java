@@ -12,7 +12,9 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author User
+ * 1119001 Dave Nathaniel K
+ * 1119035 Maria Vabiolla V
+ * 1119043 Tridia Enjeliani S M
  */
 public class DatabaseHandler {
     public Connection con;
