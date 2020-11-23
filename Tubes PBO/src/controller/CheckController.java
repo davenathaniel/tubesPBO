@@ -41,7 +41,7 @@ public class CheckController {
     
     // SELECT ALL TRANSACTION
     public static DefaultTableModel getAllTransaction() {
-        DefaultTableModel model = new DefaultTableModel(new String[]{"ID Transaksi", "ID Hotel", "ID User", "No. Kamar", "Tanggal Booking", "Check In", "Check Out", "Jumlah Guest", "Uang Muka", "ID Pembayaran", "Status"}, 0) {
+        DefaultTableModel model = new DefaultTableModel(new String[]{"ID Transaksi", "ID Hotel", "ID User", "No. Kamar", "Tanggal Booking", "Check In", "Check Out", "Jumlah Guest", "ID Pembayaran", "Status"}, 0) {
 
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -52,7 +52,7 @@ public class CheckController {
 
         SimpleDateFormat formatter = new SimpleDateFormat("dd MMMM yyyy");
 
-        String query = "SELECT * FROM booking_transaksi";
+        String query = "SELECT * FROM bookingtransaksi";
         try {
             Statement stmt = conn.con.createStatement();
             ResultSet rs = stmt.executeQuery(query);
@@ -60,12 +60,12 @@ public class CheckController {
                 String idT = Integer.toString(rs.getInt("idTransaksi"));
                 String idH = Integer.toString(rs.getInt("idHotel"));
                 String noKamar = Integer.toString(rs.getInt("noKamar"));
-                String idU = Integer.toString(rs.getInt("idUser"));
+                String idU = Integer.toString(rs.getInt("idPerson"));
                 String booking = formatter.format(rs.getDate("tanggalBooking"));
-                String checkin = formatter.format(rs.getDate("check_in"));
-                String checkout = formatter.format(rs.getDate("check_out"));
-                String jumlahGuest = Integer.toString(rs.getInt("jumlahGuest"));
-                String idJenisPembayaran = Integer.toString(rs.getInt("idJenisPembayaran"));
+                String checkin = formatter.format(rs.getDate("checkIn"));
+                String checkout = formatter.format(rs.getDate("checkOut"));
+                String jumlahGuest = Integer.toString(rs.getInt("jumlahOrang"));
+                String idJenisPembayaran = Integer.toString(rs.getInt("idJenis"));
                 String status = rs.getString("status");
                 model.addRow(new Object[]{idT, idH, idU, noKamar, booking, checkin, checkout, jumlahGuest, idJenisPembayaran, status});
             }
@@ -126,7 +126,7 @@ public class CheckController {
                 transaksi.setCheckIn(rs.getDate("checkIn"));
                 transaksi.setCheckOut(rs.getDate("checkOut"));
                 transaksi.setJumlahOrang(rs.getInt("jumlahOrang"));
-                transaksi.setIdJenisPembayaran(rs.getInt("idJenisPembayaran"));
+                transaksi.setIdJenisPembayaran(rs.getInt("idJenis"));
                 transaksi.setStatus(StatusBookingEnum.valueOf(rs.getString("status")));
             }
         } catch (SQLException e) {
@@ -167,7 +167,7 @@ public class CheckController {
 
     //CheckBooking, Cancel Booking, Reschedule Booking
     public static DefaultTableModel getUserActiveTransaction(int idUser) {
-        DefaultTableModel model = new DefaultTableModel(new String[]{"ID Transaksi", "Nama Hotel", "Type Kamar", "Tanggal Booking", "Check In", "Check Out", "Jumlah Guest", "Uang Muka"}, 0) {
+        DefaultTableModel model = new DefaultTableModel(new String[]{"ID Transaksi", "Nama Hotel", "Tipe Kamar", "Tanggal Booking", "Check In", "Check Out", "Jumlah Orang"}, 0) {
 
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -189,7 +189,7 @@ public class CheckController {
                 String booking = formatter.format(rs.getDate("tanggalBooking"));
                 String checkin = formatter.format(rs.getDate("checkIn"));
                 String checkout = formatter.format(rs.getDate("checkOut"));
-                String jumlahGuest = Integer.toString(rs.getInt("jumlahGuest"));
+                String jumlahGuest = Integer.toString(rs.getInt("jumlahOrang"));
                 model.addRow(new Object[]{idT, namaHotel, typeKamar, booking, checkin, checkout, jumlahGuest});
             }
         } catch (SQLException e) {
