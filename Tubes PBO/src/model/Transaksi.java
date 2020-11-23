@@ -5,7 +5,10 @@
  */
 package model;
 
+import controller.CheckController;
+import static controller.DataController.listJenisPembayaran;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 import model.enums.StatusBookingEnum;
 
 /**
@@ -90,12 +93,12 @@ public class Transaksi {
         this.idHotel = idHotel;
     }
 
-    public void setStatus(StatusBookingEnum status) {
-        this.status = status;
-    }
-
     public StatusBookingEnum getStatus() {
         return status;
+    }
+    
+    public void setStatus(StatusBookingEnum status) {
+        this.status = status;
     }
 
     public Date getTanggal_Booking() {
@@ -138,7 +141,41 @@ public class Transaksi {
         this.idJenisPembayaran = idJenisPembayaran;
     }
     
-    
-    
-    
+    //Salah tempat seharusnya di Controller
+    public void bookingKamar(int idJenisPembayaran, int no_Kamar, int jumlahOrang, Date checkIn, Date checkOut) {
+        //idHotel = HotelManager.getInstance().getHotel().getIdHotel();
+        this.idJenisPembayaran = idJenisPembayaran;
+        idPerson = PersonManager.getInstance().getPerson().getIdPerson();
+        this.no_Kamar = no_Kamar;
+        this.jumlahOrang = jumlahOrang;
+        this.checkIn = checkIn;
+        this.checkOut = checkOut;
+        this.tanggal_Booking = new Date();
+        TransaksiManager.getInstance().setTransaction(this);
+    }
+
+    public int getLamaInap() {
+        long diffInMillies = Math.abs(this.checkOut.getTime() - this.checkIn.getTime());
+        long diff = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
+        return (int) diff;
+    }
+
+    public int HitungTotalBayar() {
+        Room room = CheckController.getDataRoom(this.idHotel, this.no_Kamar);
+        return (int)(getLamaInap() * room.getHarga());
+    }
+
+    public int getBill() {
+        return (HitungTotalBayar());
+    }
+
+    public int getRawBill() {
+        return (HitungTotalBayar());
+    }
+
+    public String printBill() {
+        return "Biaya Hotel : " + (HitungTotalBayar())
+                + "\n\n\nTotal : " + (getBill());
+    }
+
 }

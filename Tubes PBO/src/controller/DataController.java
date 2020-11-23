@@ -5,9 +5,11 @@
  */
 package controller;
 
+import static controller.PembayaranController.conn;
 import java.sql.*;
 import java.util.ArrayList;
 import model.*;
+import static model.enums.TipePersonEnum.*;
 
 /**
  *
@@ -16,6 +18,7 @@ import model.*;
 public class DataController {
     static DatabaseHandler conn = new DatabaseHandler();
     public static ArrayList<Hotel> listCabangHotel = getListHotel();
+    public static ArrayList<JenisPembayaran> listJenisPembayaran = getAllJenisPembayaran();
 
     //select data semua cabang hotel
     private static ArrayList<Hotel> getListHotel() {
@@ -50,6 +53,68 @@ public class DataController {
             e.printStackTrace();
         }
         return listRoom;
+    }
+    
+    //Select data semua Jenis Pembayaran
+    public static ArrayList<JenisPembayaran> getAllJenisPembayaran(){
+        ArrayList<JenisPembayaran> pembayaran = new ArrayList<>();
+        conn.connect();
+        String query = "SELECT * FROM jenispembayaran";
+        try {
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()){
+                JenisPembayaran jenis = new JenisPembayaran();
+                jenis.setIdJenisPembayaran(rs.getInt("idJenis"));
+                jenis.setJenisPembayaran(rs.getString("jenis"));
+                pembayaran.add(jenis);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return (pembayaran);
+    }
+    
+    //Get User By ID
+    public static Person getPersonByID(int idUser) {
+        Person person = null;
+        conn.connect();
+        String query = "SELECT * FROM person WHERE idPerson=" + idUser;
+        try{
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while(rs.next()){
+                int tipePerson = rs.getInt("tipePerson");
+                switch(tipePerson){
+                    case 0:
+                        person = new Person();
+                        person.setTipePerson(CUSTOMER);
+                        break;
+                    case 1:
+                        person = new Receptionist(rs.getInt("idCabang"), rs.getInt("salary"), rs.getInt("absensi"));
+                        person.setTipePerson(RECEPTIONIST);
+                        break;
+                    case 2:
+                        person = new Person();
+                        person.setTipePerson(ADMIN);
+                        break;
+                    default:
+                        person = new Person();
+                        break;
+                }
+                person.setIdPerson(rs.getInt("idPerson"));
+                person.setUsername(rs.getString("username"));
+                person.setPassword(rs.getString("password"));
+                person.setNama(rs.getString("nama"));
+                person.setAlamat(rs.getString("alamat"));
+                person.setNoKTP(rs.getString("noKTP"));
+                person.setNoHP(rs.getString("noHP"));
+                person.setEmail(rs.getString("email"));
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        return (person);
     }
     
     //insert room baru
