@@ -37,8 +37,8 @@ public class JenisPembayaran {
         this.jenisPembayaran = jenisPembayaran;
     }
 
-    public String getJenis() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String getJenisPembayaran() {
+        return jenisPembayaran;
     }
     
     

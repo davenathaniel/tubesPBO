@@ -70,7 +70,7 @@ public class PembayaranController {
     public static boolean updatePembayaran(int idTransaksi, int idPembayaran) {
         conn.connect();
 
-        String query = "UPDATE bookingtransaksi SET idJenisPembayaran = " + idPembayaran + " WHERE idTransaksi = " + idTransaksi;
+        String query = "UPDATE bookingtransaksi SET idJenis = " + idPembayaran + " WHERE idTransaksi = " + idTransaksi;
         try {
             Statement stmt = conn.con.createStatement();
             stmt.executeUpdate(query);

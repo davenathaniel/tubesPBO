@@ -45,7 +45,7 @@ public class MenuBookingPopUp implements ActionListener {
         int height = 60;
         int j = 0;
         for (int i = 1; i < DataController.listJenisPembayaran.size(); i++) {
-            String jenisBayar = DataController.listJenisPembayaran.get(i).getJenis();
+            String jenisBayar = DataController.listJenisPembayaran.get(i).getJenisPembayaran();
             listRButtonPembayaran.add(new JRadioButton(jenisBayar));
             listRButtonPembayaran.get(j).setBounds(20, height, 200, 30);
             height += 38;

@@ -64,4 +64,9 @@ public class Hotel {
     public void setNamaHotel(String namaHotel) {
         this.namaHotel = namaHotel;
     }
+    
+    @Override
+    public String toString() {
+        return "Data Hotel :\n" + "Nama : " + namaHotel + "\nLokasi : " + lokasi;
+    }
 }
