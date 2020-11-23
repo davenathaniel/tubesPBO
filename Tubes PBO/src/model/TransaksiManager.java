@@ -48,11 +48,11 @@ public class TransaksiManager {
                 + "<br/>Detail Kamar : <br/>      No Kamar : " + this.transaction.getNo_Kamar()
                 + "<br/>      Tipe Kamar : " + room.getTipeKamar()
                 + "<br/>      Harga Kamar : " + (room.getHarga())
-                + "<br/>Detail User : <br/>      ID User : " + this.transaction.getIdPerson()
+                + "<br/>Detail User : <br/>      ID Person : " + this.transaction.getIdPerson()
                 + "<br/>      Telepon : " + person.getNoHP()
                 + "<br/>      Nama : " + person.getNama()
                 + "<br/>Detail Pembayaran : <br/>      ID Pembayaran : " + this.transaction.getIdJenisPembayaran()
-                + "<br/>      Jenis : " + listJenisPembayaran.get(this.transaction.getIdJenisPembayaran() - 1).getJenisPembayaran()
+                + "<br/>      Jenis : " + listJenisPembayaran.get(this.transaction.getIdJenisPembayaran()).getJenisPembayaran()
                 + "<br/>      Harga Total : " + (transaction.HitungTotalBayar())
                 + "<br/>      Harga yang harus dibayar : " + (transaction.getBill())
                 + "<br/>Status Transaksi : " + this.transaction.getStatus() + "</pre></html>";
