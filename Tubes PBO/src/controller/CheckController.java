@@ -26,7 +26,7 @@ public class CheckController {
 
     static DatabaseHandler conn = new DatabaseHandler();
 
-    //GET ROOM INDEX IN ARRAY HOTEL
+    //Mengambil Index Room di Array Hotel
     public static Room getDataRoom(int idHotel, int noKamar) {
         Hotel hotel = DataController.listCabangHotel.get(idHotel - 1);
         Room room = null;
@@ -39,7 +39,7 @@ public class CheckController {
         return room;
     }
     
-    // SELECT ALL TRANSACTION
+    // SELECT Semua Transaksi
     public static DefaultTableModel getAllTransaction() {
         DefaultTableModel model = new DefaultTableModel(new String[]{"ID Transaksi", "ID Hotel", "ID User", "No. Kamar", "Tanggal Booking", "Check In", "Check Out", "Jumlah Guest", "ID Pembayaran", "Status"}, 0) {
 
@@ -75,7 +75,7 @@ public class CheckController {
         return (model);
     }
 
-    // SELECT TRANSACTION BY STATUS
+    // SELECT Transaksi berdasarkan Status
     public static DefaultTableModel getTransactionByStatus(int idHotel, StatusBookingEnum status) {
         DefaultTableModel model = new DefaultTableModel(new String[]{"ID Transaksi", "ID Hotel", "ID Person", "Tipe Kamar", "Tanggal Booking", "Check In", "Check Out"}, 0) {
 
@@ -108,7 +108,7 @@ public class CheckController {
         return (model);
     }
 
-    // GET ONE TRANSACTION
+    // Mengambil satu transaksi
     public static Transaksi getOneTransaction(int idTransaksi) {
         Transaksi transaksi = new Transaksi();
         conn.connect();
@@ -135,7 +135,7 @@ public class CheckController {
         return (transaksi);
     }
 
-    // UPDATE CHECK IN STATUS
+    // UPDATE Status Check In
     public static boolean updateCheckIn(int idTransaksi) {
         conn.connect();
 
@@ -150,7 +150,7 @@ public class CheckController {
         }
     }
 
-    // UPDATE CHECK OUT STATUS
+    // UPDATE Status Check Out
     public static boolean updateCheckOut(int idTransaksi) {
         conn.connect();
         TransaksiManager.getInstance().getTransaction().setStatus(CHECKEDOUT);
@@ -165,9 +165,9 @@ public class CheckController {
         }
     }
 
-    //CheckBooking, Cancel Booking, Reschedule Booking
+    //Cancel Booking, Reschedule Booking
     public static DefaultTableModel getUserActiveTransaction(int idUser) {
-        DefaultTableModel model = new DefaultTableModel(new String[]{"ID Transaksi", "Nama Hotel", "Tipe Kamar", "Tanggal Booking", "Check In", "Check Out", "Jumlah Orang"}, 0) {
+        DefaultTableModel model = new DefaultTableModel(new String[]{"ID Transaksi", "Nama Hotel", "Type Kamar", "Tanggal Booking", "Check In", "Check Out", "Jumlah Guest"}, 0) {
 
             @Override
             public boolean isCellEditable(int row, int column) {

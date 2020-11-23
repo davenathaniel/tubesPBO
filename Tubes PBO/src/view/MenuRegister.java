@@ -63,19 +63,19 @@ public class MenuRegister implements ActionListener {
         ktp.setBounds(180,130,320,50);
         ktpLabel.setFont(StyleSheet.formFont);
         
-        emailLabel = new JLabel("Email",JLabel.LEFT);
-        emailLabel.setBounds(10,190,150,50);
-        emailLabel.setFont(StyleSheet.formFont);
-        email = new JTextField();
-        email.setBounds(180,190,320,50);
-        email.setFont(StyleSheet.formFont);
-        
-        teleponLabel =  new JLabel("Telepon",JLabel.LEFT);
-        teleponLabel.setBounds(10,250,150,50);
+        teleponLabel = new JLabel("Email",JLabel.LEFT);
+        teleponLabel.setBounds(10,190,150,50);
         teleponLabel.setFont(StyleSheet.formFont);
         telepon = new JTextField();
-        telepon.setBounds(180,250,320,50);
+        telepon.setBounds(180,190,320,50);
         telepon.setFont(StyleSheet.formFont);
+        
+        emailLabel =  new JLabel("Telepon",JLabel.LEFT);
+        emailLabel.setBounds(10,250,150,50);
+        emailLabel.setFont(StyleSheet.formFont);
+        email = new JTextField();
+        email.setBounds(180,250,320,50);
+        email.setFont(StyleSheet.formFont);
         
         message = new JLabel("Username Already Exist");
         message.setBounds(200,560,300,70);
@@ -141,10 +141,10 @@ public class MenuRegister implements ActionListener {
         dataPanel.add(alamat);
         dataPanel.add(ktpLabel);
         dataPanel.add(ktp);
-        dataPanel.add(emailLabel);
-        dataPanel.add(email);
         dataPanel.add(teleponLabel);
         dataPanel.add(telepon);
+        dataPanel.add(emailLabel);
+        dataPanel.add(email);
         dataPanel.add(usernameLabel);
         dataPanel.add(username);
         dataPanel.add(passwordLabel);
@@ -171,13 +171,13 @@ public class MenuRegister implements ActionListener {
                 String nama = this.nama.getText();
                 String alamat = this.alamat.getText();
                 String noKTP = this.ktp.getText();
-                String email = this.telepon.getText();
                 String noHP = this.telepon.getText();
+                String email = this.email.getText();
                 String uname = username.getText();
                 String pass = new String(password.getPassword());
                 int x = JOptionPane.showOptionDialog(null, "Are you sure?", "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
                 if(x == JOptionPane.YES_OPTION){
-                    if(nama.length() == 0 || alamat.length() == 0 || noKTP.length() == 0 || email.length() == 0 || noHP.length() == 0 || uname.length() == 0 || pass.length() == 0){
+                    if(nama.length() == 0 || alamat.length() == 0 || noKTP.length() == 0 || noHP.length() == 0 || email.length() == 0 || uname.length() == 0 || pass.length() == 0){
                         JOptionPane.showMessageDialog(null, "Input all the data!", "Alert", JOptionPane.WARNING_MESSAGE);
                     }else{
                         Person newPerson = new Person();
