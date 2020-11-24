@@ -55,6 +55,8 @@ public class TransaksiManager {
         if(this.getTransaction().getStatus()==StatusBookingEnum.CHECKEDOUT){
         data += "<br/>Detail Pembayaran : <br/>      ID Pembayaran : " + this.transaction.getIdJenisPembayaran()
                 + "<br/>      Jenis : " + listJenisPembayaran.get(this.transaction.getIdJenisPembayaran() - 1).getJenisPembayaran()
+                + "<br/>      Harga Total : " + (transaction.HitungTotalBayar())
+                + "<br/>Status Transaksi : " + this.transaction.getStatus() + "</pre></html>";
                 + "<br/>      Harga Total : " + transaction.HitungTotalBayar()
                 + "<br/>      Harga yang harus dibayar : " + transaction.getBill();
         }
