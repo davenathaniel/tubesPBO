@@ -279,7 +279,7 @@ public class Controller {
     public static boolean booking(Transaksi trans){
         
         conn.connect();
-        String query = "INSERT INTO bookingtransaksi (idPerson,idHotel,jumlahOrang,tanggalBooking,noKamar,checkIn,checkOut,status, idJenis) VALUES (?,?,?,?,?,?,?,?,?)";
+        String query = "INSERT INTO bookingtransaksi (idPerson,idHotel,jumlahOrang,tanggalBooking,noKamar,checkIn,checkOut,status,idJenis) VALUES (?,?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement stmt = conn.con.prepareStatement(query);
             stmt.setInt(1, trans.getIdPerson());

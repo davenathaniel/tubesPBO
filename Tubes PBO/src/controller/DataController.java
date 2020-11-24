@@ -150,4 +150,19 @@ public class DataController {
             return false;
         }
     }
+    
+    //delete room
+    public static boolean deleteRoom(int noKamar, int idHotel) {
+        conn.connect();
+
+        String query = "DELETE FROM room WHERE noKamar = " + noKamar + " AND idHotel = " + idHotel;
+        try {
+            Statement stmt = conn.con.createStatement();
+            stmt.executeUpdate(query);
+            return (true);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return (false);
+        }
+    }
 }

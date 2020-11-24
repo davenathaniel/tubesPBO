@@ -24,14 +24,15 @@ public class MenuManagementData implements ActionListener {
 
     JFrame managementDataFrame = new JFrame("Management Data Room");
     JLabel judul, filterLabel;
-    JPanel createPanel, updatePanel;
+    JPanel createPanel, updatePanel, deletePanel;
     JLabel noKamarLabel, tipeLabel, hargaLabel;
     JLabel noKamarLabel2, tipeLabel2, hargaLabel2;
+    JLabel noKamarLabel3;
     JTextField noKamar, tipe, harga;
     JTextField tipe2, harga2;
-    JButton createButton, updateButton;
+    JButton createButton, updateButton, deleteButton;
     JButton back = new JButton("Back");
-    JComboBox filterHotel, filterRoom;
+    JComboBox filterHotel, filterRoom1, filterRoom2;
     int idH = 1;
 
     public MenuManagementData() {
@@ -54,33 +55,56 @@ public class MenuManagementData implements ActionListener {
                     break;
                 }
             }
-            filterRoom.removeAllItems();
-            filterRoom.addItem("Choose Room");
+            filterRoom1.removeAllItems();
+            filterRoom1.addItem("Choose Room");
             for (int i = 0; i < DataController.listCabangHotel.get(idH - 1).getListRoom().size(); i++) {
-                filterRoom.addItem(DataController.listCabangHotel.get(idH - 1).getListRoom().get(i).getNoKamar());
+                filterRoom1.addItem(DataController.listCabangHotel.get(idH - 1).getListRoom().get(i).getNoKamar());
+            }
+            filterRoom2.removeAllItems();
+            filterRoom2.addItem("Choose Room");
+            for (int i = 0; i < DataController.listCabangHotel.get(idH - 1).getListRoom().size(); i++) {
+                filterRoom2.addItem(DataController.listCabangHotel.get(idH - 1).getListRoom().get(i).getNoKamar());
             }
         });
 
-        filterRoom = new JComboBox();
-        filterRoom.setBounds(180, 10, 350, 40);
-        filterRoom.addItem("Choose Room");
+        filterRoom1 = new JComboBox();
+        filterRoom1.setBounds(180, 10, 350, 40);
+        filterRoom1.addItem("Choose Room");
         for (int i = 0; i < DataController.listCabangHotel.get(idH - 1).getListRoom().size(); i++) {
-            filterRoom.addItem(DataController.listCabangHotel.get(idH - 1).getListRoom().get(i).getNoKamar());
+            filterRoom1.addItem(DataController.listCabangHotel.get(idH - 1).getListRoom().get(i).getNoKamar());
         }
-        filterRoom.addItemListener((e) -> {
-            if (filterRoom.getItemCount() != 0) {
-                if (!filterRoom.getSelectedItem().equals("Choose Room")) {
-                    Room room = CheckController.getDataRoom(idH, (int) filterRoom.getSelectedItem());
+        filterRoom1.addItemListener((e) -> {
+            if (filterRoom1.getItemCount() != 0) {
+                if (!filterRoom1.getSelectedItem().equals("Choose Room")) {
+                    Room room = CheckController.getDataRoom(idH, (int) filterRoom1.getSelectedItem());
                     tipe.setText(room.getTipeKamar());
                     harga.setText(Double.toString(room.getHarga()));
                 }
             }
         });
 
+        filterRoom2 = new JComboBox();
+        filterRoom2.setBounds(180, 10, 350, 40);
+        filterRoom2.addItem("Choose Room");
+        for (int i = 0; i < DataController.listCabangHotel.get(idH - 1).getListRoom().size(); i++) {
+            filterRoom2.addItem(DataController.listCabangHotel.get(idH - 1).getListRoom().get(i).getNoKamar());
+        }
+        filterRoom2.addItemListener((e) -> {
+            if (filterRoom2.getItemCount() != 0) {
+                if (!filterRoom2.getSelectedItem().equals("Choose Room")) {
+                    Room room = CheckController.getDataRoom(idH, (int) filterRoom2.getSelectedItem());
+                    tipe.setText(room.getTipeKamar());
+                    harga.setText(Double.toString(room.getHarga()));
+                }
+            }
+        });
+        
         noKamarLabel = new JLabel("Nomor Kamar  :");
         noKamarLabel.setBounds(10, 10, 200, 40);
         noKamarLabel2 = new JLabel("Nomor Kamar  :");
         noKamarLabel2.setBounds(10, 10, 200, 40);
+        noKamarLabel3 = new JLabel("Nomor Kamar  :");
+        noKamarLabel3.setBounds(10, 10, 200, 40);
         noKamar = new JTextField();
         noKamar.setBounds(180, 10, 350, 40);
         noKamar.setBorder(null);
@@ -115,7 +139,10 @@ public class MenuManagementData implements ActionListener {
         updateButton = new JButton("UPDATE");
         updateButton.setBounds(1000, 400, 150, 40);
         updateButton.addActionListener(this);
-
+        deleteButton = new JButton("DELETE");
+        deleteButton.setBounds(1000, 400, 150, 40);
+        deleteButton.addActionListener(this);
+        
         createPanel = new JPanel();
         createPanel.add(noKamarLabel2);
         createPanel.add(noKamar);
@@ -128,18 +155,25 @@ public class MenuManagementData implements ActionListener {
 
         updatePanel = new JPanel();
         updatePanel.add(noKamarLabel);
-        updatePanel.add(filterRoom);
+        updatePanel.add(filterRoom1);
         updatePanel.add(tipeLabel);
         updatePanel.add(tipe);
         updatePanel.add(hargaLabel);
         updatePanel.add(harga);
         updatePanel.add(updateButton);
         updatePanel.setLayout(null);
+        
+        deletePanel = new JPanel();
+        deletePanel.add(noKamarLabel3);
+        deletePanel.add(filterRoom2);
+        deletePanel.add(deleteButton);
+        deletePanel.setLayout(null);
 
         JTabbedPane tp = new JTabbedPane();
         tp.setBounds(100, 150, 1200, 500);
         tp.add("CREATE ROOM", createPanel);
         tp.add("UPDATE ROOM", updatePanel);
+        tp.add("DELETE ROOM", deletePanel);
 
         back.setBounds(20, 700, 100, 30);
         back.addActionListener(this);
@@ -192,7 +226,7 @@ public class MenuManagementData implements ActionListener {
             case "UPDATE":
                 a = JOptionPane.showOptionDialog(null, "Are you sure?", "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
                 if (a == JOptionPane.YES_OPTION) {
-                    int noKamar = (int) this.filterRoom.getSelectedItem();
+                    int noKamar = (int) this.filterRoom1.getSelectedItem();
                     String tipe = this.tipe.getText();
                     String harga = this.harga.getText();
                     if (tipe.length() == 0 || harga.length() == 0) {
@@ -208,6 +242,19 @@ public class MenuManagementData implements ActionListener {
                         } else {
                             JOptionPane.showMessageDialog(null, "Update failed!", "Alert", JOptionPane.WARNING_MESSAGE);
                         }
+                    }
+                }
+                break;
+                case "DELETE":
+                a = JOptionPane.showOptionDialog(null, "Are you sure?", "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
+                if (a == JOptionPane.YES_OPTION) {
+                    int noKamar = (int) this.filterRoom2.getSelectedItem();
+                    if (DataController.deleteRoom(noKamar, idH)) {
+                        JOptionPane.showMessageDialog(null, "Delete Room Succeed");
+                        managementDataFrame.dispose();
+                        new MenuAdmin();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Delete failed!", "Alert", JOptionPane.WARNING_MESSAGE);
                     }
                 }
                 break;

@@ -7,6 +7,7 @@ package model;
 
 import controller.CheckController;
 import static controller.DataController.*;
+import model.enums.StatusBookingEnum;
 
 /**
  *
@@ -38,7 +39,7 @@ public class TransaksiManager {
     public String toString() {
         Person person = getPersonByID(this.transaction.getIdPerson());
         Room room = CheckController.getDataRoom(transaction.getIdHotel(), transaction.getNo_Kamar());
-        return "<html><pre>ID Transaksi : " + this.transaction.getIdTransaksi()
+        String data = "<html><pre>ID Transaksi : " + this.transaction.getIdTransaksi()
                 + "<br/>Tanggal Booking : " + this.transaction.getTanggal_Booking()
                 + "<br/>Tanggal Check In : " + this.transaction.getCheckIn()
                 + "<br/>Tanggal Check Out : " + this.transaction.getCheckOut()
@@ -47,13 +48,19 @@ public class TransaksiManager {
                 + "<br/>      Alamat : " + listCabangHotel.get(this.transaction.getIdHotel() - 1).getLokasi()
                 + "<br/>Detail Kamar : <br/>      No Kamar : " + this.transaction.getNo_Kamar()
                 + "<br/>      Tipe Kamar : " + room.getTipeKamar()
-                + "<br/>      Harga Kamar : " + (room.getHarga())
-                + "<br/>Detail User : <br/>      ID Person : " + this.transaction.getIdPerson()
+                + "<br/>      Harga Kamar : " + room.getHarga()
+                + "<br/>Detail User : <br/>      ID User : " + this.transaction.getIdPerson()
                 + "<br/>      Telepon : " + person.getNoHP()
-                + "<br/>      Nama : " + person.getNama()
-                + "<br/>Detail Pembayaran : <br/>      ID Pembayaran : " + this.transaction.getIdJenisPembayaran()
+                + "<br/>      Nama : " + person.getNama();
+        if(this.getTransaction().getStatus()==StatusBookingEnum.CHECKEDOUT){
+        data += "<br/>Detail Pembayaran : <br/>      ID Pembayaran : " + this.transaction.getIdJenisPembayaran()
                 + "<br/>      Jenis : " + listJenisPembayaran.get(this.transaction.getIdJenisPembayaran() - 1).getJenisPembayaran()
                 + "<br/>      Harga Total : " + (transaction.HitungTotalBayar())
                 + "<br/>Status Transaksi : " + this.transaction.getStatus() + "</pre></html>";
+                + "<br/>      Harga Total : " + transaction.HitungTotalBayar()
+                + "<br/>      Harga yang harus dibayar : " + transaction.getBill();
+        }
+        data += "<br/>Status Transaksi : " + this.transaction.getStatus()+"</pre></html>";
+        return data;
     }
 }
