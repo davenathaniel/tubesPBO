@@ -67,7 +67,7 @@ public class MenuAdmin implements ActionListener{
         switch(buttonClick){
             case "History":
                 layoutAdmin.dispose();
-                new MenuHistory();
+                new MenuHistoryAdmin();
                 break;
             case "Management Data":
                 layoutAdmin.dispose();
