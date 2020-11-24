@@ -91,6 +91,7 @@ public class MenuCustomer implements ActionListener{
                 break;
             case "Cek History":
                 layoutCustomer.dispose();
+                new MenuHistoryCustomer();
                 break;
             case "Log Out":
                 int jawab = JOptionPane.showOptionDialog(null, 
