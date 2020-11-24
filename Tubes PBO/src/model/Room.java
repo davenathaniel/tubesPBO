@@ -61,4 +61,9 @@ public class Room {
     public void setLokasi(int batasOrang) {
         this.batasOrang = batasOrang;
     }
+    
+    @Override
+    public String toString() {
+        return "\nNo Kamar : " + noKamar + "\nTipe : " + tipeKamar + "\nHarga : " + harga + "\nBatas Guest : " + batasOrang;
+    }
 }

@@ -5,7 +5,6 @@
  */
 package controller;
 
-import static controller.PembayaranController.conn;
 import java.sql.*;
 import java.util.ArrayList;
 import model.*;
@@ -122,13 +121,14 @@ public class DataController {
     //insert room baru
     public static boolean insertNewRoom(Room room, int idHotel) {
         conn.connect();
-        String query = "INSERT INTO room (idHotel,noKamar,tipe,harga) VALUES(?,?,?,?)";
+        String query = "INSERT INTO room (idHotel,noKamar,tipe,harga,batasGuest) VALUES(?,?,?,?,?)";
         try {
             PreparedStatement stmt = conn.con.prepareStatement(query);
             stmt.setInt(1, idHotel);
             stmt.setInt(2, room.getNoKamar());
             stmt.setString(3, room.getTipeKamar());
             stmt.setDouble(4, room.getHarga());
+            stmt.setInt(5, room.getBatasOrang());
             stmt.executeUpdate();
             return true;
         } catch (SQLException e) {
@@ -140,7 +140,7 @@ public class DataController {
     //update room
     public static boolean updateRoom(Room room, int idHotel) {
         conn.connect();
-        String query = "UPDATE room SET tipe = '" + room.getTipeKamar() + " , harga =  " + room.getHarga() + " WHERE idHotel = " + idHotel + " AND noKamar = " + room.getNoKamar();
+        String query = "UPDATE room SET tipe = '" + room.getTipeKamar() + "' , batasGuest = " + room.getBatasOrang() + " , harga =  " + room.getHarga() + " WHERE idHotel = " + idHotel + " AND noKamar = " + room.getNoKamar();
         try {
             Statement stmt = conn.con.createStatement();
             stmt.executeUpdate(query);
