@@ -8,7 +8,7 @@ package view;
 import controller.CheckController;
 import controller.DataController;
 import controller.RoomController;
-import java.awt.Color;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
@@ -23,7 +23,7 @@ import model.Room;
 public class MenuManagementData implements ActionListener {
 
     JFrame managementDataFrame = new JFrame("Management Data Room");
-    JLabel judul, filterLabel;
+    JLabel title, filterLabel;
     JPanel createPanel, updatePanel, deletePanel;
     JLabel noKamarLabel, tipeLabel, hargaLabel;
     JLabel noKamarLabel2, tipeLabel2, hargaLabel2;
@@ -31,20 +31,24 @@ public class MenuManagementData implements ActionListener {
     JTextField noKamar, tipe, harga;
     JTextField tipe2, harga2;
     JButton createButton, updateButton, deleteButton;
-    JButton back = new JButton("Back");
+    JButton back = new JButton("<< Back");
     JComboBox filterHotel, filterRoom1, filterRoom2;
     int idH = 1;
 
     public MenuManagementData() {
         managementDataFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        managementDataFrame.getContentPane().setBackground(StyleSheet.backgroundColor);
 
-        judul = new JLabel("Room Management");
-        judul.setBounds(20, 10, 500, 40);
+        title = new JLabel("R O O M      M A N A G E M E N T",JLabel.CENTER);
+        title.setBounds(0, 0, (int)Toolkit.getDefaultToolkit().getScreenSize().getWidth(), (int)Toolkit.getDefaultToolkit().getScreenSize().getHeight()/5);
+        title.setFont(StyleSheet.titleFont);
 
         filterLabel = new JLabel("Choose Hotel : ");
-        filterLabel.setBounds(20, 75, 200, 30);
+        filterLabel.setBounds(750,(int)Toolkit.getDefaultToolkit().getScreenSize().getHeight()/5+20, 200, 30);
+        filterLabel.setFont(StyleSheet.formFont);
         filterHotel = new JComboBox();
-        filterHotel.setBounds(200, 75, 200, 30);
+        filterHotel.setBounds(930,(int)Toolkit.getDefaultToolkit().getScreenSize().getHeight()/5+20, 200, 30);
+        filterHotel.setFont(StyleSheet.formFont);
         for (int i = 0; i < DataController.listCabangHotel.size(); i++) {
             filterHotel.addItem(DataController.listCabangHotel.get(i).getNamaHotel());
         }
@@ -69,6 +73,7 @@ public class MenuManagementData implements ActionListener {
 
         filterRoom1 = new JComboBox();
         filterRoom1.setBounds(180, 10, 350, 40);
+        filterRoom1.setFont(StyleSheet.formFont);
         filterRoom1.addItem("Choose Room");
         for (int i = 0; i < DataController.listCabangHotel.get(idH - 1).getListRoom().size(); i++) {
             filterRoom1.addItem(DataController.listCabangHotel.get(idH - 1).getListRoom().get(i).getNoKamar());
@@ -85,6 +90,7 @@ public class MenuManagementData implements ActionListener {
 
         filterRoom2 = new JComboBox();
         filterRoom2.setBounds(180, 10, 350, 40);
+        filterRoom2.setFont(StyleSheet.formFont);
         filterRoom2.addItem("Choose Room");
         for (int i = 0; i < DataController.listCabangHotel.get(idH - 1).getListRoom().size(); i++) {
             filterRoom2.addItem(DataController.listCabangHotel.get(idH - 1).getListRoom().get(i).getNoKamar());
@@ -100,47 +106,62 @@ public class MenuManagementData implements ActionListener {
         });
         
         noKamarLabel = new JLabel("Nomor Kamar  :");
-        noKamarLabel.setBounds(10, 10, 200, 40);
+        noKamarLabel.setBounds(20, 10, 200, 40);
+        noKamarLabel.setFont(StyleSheet.formFont);
         noKamarLabel2 = new JLabel("Nomor Kamar  :");
-        noKamarLabel2.setBounds(10, 10, 200, 40);
+        noKamarLabel2.setBounds(20, 10, 200, 40);
+        noKamarLabel2.setFont(StyleSheet.formFont);
         noKamarLabel3 = new JLabel("Nomor Kamar  :");
-        noKamarLabel3.setBounds(10, 10, 200, 40);
+        noKamarLabel3.setBounds(20, 10, 200, 40);
+        noKamarLabel3.setFont(StyleSheet.formFont);
         noKamar = new JTextField();
         noKamar.setBounds(180, 10, 350, 40);
+        noKamar.setFont(StyleSheet.formFont);
         noKamar.setBorder(null);
 
         tipeLabel = new JLabel("Tipe :");
-        tipeLabel.setBounds(10, 70, 150, 40);
+        tipeLabel.setBounds(20, 70, 150, 40);
+        tipeLabel.setFont(StyleSheet.formFont);
         tipe = new JTextField();
         tipe.setBounds(180, 70, 350, 40);
+        tipe.setFont(StyleSheet.formFont);
         tipe.setBorder(null);
 
         tipeLabel2 = new JLabel("Tipe :");
-        tipeLabel2.setBounds(10, 70, 150, 40);
+        tipeLabel2.setBounds(20, 70, 150, 40);
+        tipeLabel2.setFont(StyleSheet.formFont);
         tipe2 = new JTextField();
         tipe2.setBounds(180, 70, 350, 40);
+        tipe2.setFont(StyleSheet.formFont);
         tipe2.setBorder(null);
 
         hargaLabel = new JLabel("Harga  :");
-        hargaLabel.setBounds(10, 130, 150, 40);
+        hargaLabel.setBounds(20, 130, 150, 40);
+        hargaLabel.setFont(StyleSheet.formFont);
         harga = new JTextField();
         harga.setBounds(180, 130, 350, 40);
+        harga.setFont(StyleSheet.formFont);
         harga.setBorder(null);
 
         hargaLabel2 = new JLabel("Harga  :");
-        hargaLabel2.setBounds(10, 130, 150, 40);
+        hargaLabel2.setBounds(20, 130, 150, 40);
+        hargaLabel2.setFont(StyleSheet.formFont);
         harga2 = new JTextField();
         harga2.setBounds(180, 130, 350, 40);
+        harga2.setFont(StyleSheet.formFont);
         harga2.setBorder(null);
 
         createButton = new JButton("CREATE");
-        createButton.setBounds(1000, 400, 150, 40);
+        createButton.setBounds(470, 380, 200, 70);
+        createButton.setFont(StyleSheet.buttonFont);
         createButton.addActionListener(this);
         updateButton = new JButton("UPDATE");
-        updateButton.setBounds(1000, 400, 150, 40);
+        updateButton.setBounds(470, 380, 200, 70);
+        updateButton.setFont(StyleSheet.buttonFont);
         updateButton.addActionListener(this);
         deleteButton = new JButton("DELETE");
-        deleteButton.setBounds(1000, 400, 150, 40);
+        deleteButton.setBounds(470, 380, 200, 70);
+        deleteButton.setFont(StyleSheet.buttonFont);
         deleteButton.addActionListener(this);
         
         createPanel = new JPanel();
@@ -151,6 +172,7 @@ public class MenuManagementData implements ActionListener {
         createPanel.add(hargaLabel2);
         createPanel.add(harga2);
         createPanel.add(createButton);
+        createPanel.setBackground(StyleSheet.colorPopUp);
         createPanel.setLayout(null);
 
         updatePanel = new JPanel();
@@ -161,28 +183,32 @@ public class MenuManagementData implements ActionListener {
         updatePanel.add(hargaLabel);
         updatePanel.add(harga);
         updatePanel.add(updateButton);
+        updatePanel.setBackground(StyleSheet.colorPopUp);
         updatePanel.setLayout(null);
         
         deletePanel = new JPanel();
         deletePanel.add(noKamarLabel3);
         deletePanel.add(filterRoom2);
         deletePanel.add(deleteButton);
+        deletePanel.setBackground(StyleSheet.colorPopUp);
         deletePanel.setLayout(null);
 
         JTabbedPane tp = new JTabbedPane();
-        tp.setBounds(100, 150, 1200, 500);
+        tp.setBounds(600,(int)Toolkit.getDefaultToolkit().getScreenSize().getHeight()/5+90, 700, 500);
         tp.add("CREATE ROOM", createPanel);
         tp.add("UPDATE ROOM", updatePanel);
         tp.add("DELETE ROOM", deletePanel);
+        tp.setBackground(StyleSheet.colorPopUp);
 
-        back.setBounds(20, 700, 100, 30);
+        back.setBounds(850, 900, 200, 70);
+        back.setFont(StyleSheet.buttonFont);
+        back.setBackground(StyleSheet.cancelButtonColor);
         back.addActionListener(this);
         managementDataFrame.add(back);
-        managementDataFrame.add(judul);
+        managementDataFrame.add(title);
         managementDataFrame.add(filterLabel);
         managementDataFrame.add(tp);
         managementDataFrame.add(filterHotel);
-        managementDataFrame.getContentPane().setBackground(Color.WHITE);
         managementDataFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         managementDataFrame.setLocationRelativeTo(null);
         managementDataFrame.setLayout(null);

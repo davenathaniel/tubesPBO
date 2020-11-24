@@ -93,8 +93,16 @@ public class MenuCustomer implements ActionListener{
                 layoutCustomer.dispose();
                 break;
             case "Log Out":
-                layoutCustomer.dispose();
-                new MenuLogin();
+                int jawab = JOptionPane.showOptionDialog(null, 
+                    "Log Out Now?", 
+                    "Log Out", 
+                    JOptionPane.YES_NO_OPTION, 
+                    JOptionPane.QUESTION_MESSAGE, null, null, null);
+    
+                if(jawab == JOptionPane.YES_OPTION){
+                    layoutCustomer.dispose();
+                    new MenuLogin();
+                }
                 break;
         }
     }

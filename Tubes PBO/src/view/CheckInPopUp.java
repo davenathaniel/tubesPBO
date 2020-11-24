@@ -36,7 +36,7 @@ public class CheckInPopUp implements ActionListener{
     public CheckInPopUp(){
         checkInPopUpFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         checkInPopUpFrame.setSize(520, 500);
-        checkInPopUpFrame.getContentPane().setBackground(new Color(255, 255, 230));
+        checkInPopUpFrame.getContentPane().setBackground(StyleSheet.colorPopUp);
         
         title = new JLabel("Check-In Data Confirmation", JLabel.CENTER);
         title.setBounds(0, 0,520,40);

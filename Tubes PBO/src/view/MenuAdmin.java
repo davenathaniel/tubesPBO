@@ -40,12 +40,12 @@ public class MenuAdmin implements ActionListener{
         cekHistory.setFont(StyleSheet.buttonFont);
         
         manageData = new JButton("Management Data");
-        manageData.setBounds(850, 50, 200, 70);
+        manageData.setBounds(850, 50, 300, 70);
         manageData.addActionListener(this);
         manageData.setFont(StyleSheet.buttonFont);
         
         logOut = new JButton("Logout");
-        logOut.setBounds(1100, 50, 200, 70);
+        logOut.setBounds(1200, 50, 200, 70);
         logOut.addActionListener(this);
         logOut.setFont(StyleSheet.buttonFont);
         
