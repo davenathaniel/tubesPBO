@@ -280,7 +280,7 @@ public class Controller {
         conn.connect();
         String query = "INSERT INTO bookingtransaksi (idPerson,idHotel,jumlahOrang,tanggalBooking,noKamar,checkIn,checkOut,status,idJenis) VALUES (?,?,?,?,?,?,?,?,?)";
         try {
-            PreparedStatement stmt = conn.con.prepareStatement(query);
+            PreparedStatement stmt = conn.con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             stmt.setInt(1, trans.getIdPerson());
             stmt.setInt(2, trans.getIdHotel());
             stmt.setInt(3, trans.getJumlahOrang());
@@ -291,6 +291,11 @@ public class Controller {
             stmt.setString(8, String.valueOf(model.enums.StatusBookingEnum.BOOKED));
             stmt.setInt(9, trans.getIdJenisPembayaran());
             stmt.executeUpdate();
+            ResultSet rs = stmt.getGeneratedKeys();
+            if(rs.next()) {
+                int rid = rs.getInt(1);
+                TransaksiManager.getInstance().getTransaction().setIdTransaksi(rid);
+            }
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
