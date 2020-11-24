@@ -5,11 +5,9 @@
  */
 package controller;
 
-import static controller.Controller.conn;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import javax.swing.JOptionPane;
 import model.Person;
 import model.Receptionist;
 import static model.enums.TipePersonEnum.*;

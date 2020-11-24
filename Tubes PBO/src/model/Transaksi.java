@@ -6,7 +6,6 @@
 package model;
 
 import controller.CheckController;
-import static controller.DataController.listJenisPembayaran;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 import model.enums.StatusBookingEnum;

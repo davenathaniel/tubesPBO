@@ -17,14 +17,14 @@ package model;
 public class JenisPembayaran {
     private int idJenisPembayaran;
     private String jenisPembayaran;
-
-    public JenisPembayaran(){}
     
     public JenisPembayaran(int idJenisPembayaran, String jenisPembayaran) {
         this.idJenisPembayaran = idJenisPembayaran;
         this.jenisPembayaran = jenisPembayaran;
     }
-
+    
+    public JenisPembayaran(){}
+    
     public int getIdJenisPembayaran() {
         return idJenisPembayaran;
     }
