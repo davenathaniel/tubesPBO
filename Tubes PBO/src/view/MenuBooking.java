@@ -18,6 +18,7 @@ import javax.swing.*;
 import model.PersonManager;
 import model.Room;
 import model.Transaksi;
+import model.TransaksiManager;
 import model.enums.StatusBookingEnum;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
@@ -217,6 +218,7 @@ public class MenuBooking implements ActionListener, ItemListener{
                     trans.setCheckIn(checkInDate);
                     trans.setCheckOut(checkOutDate);
                     trans.setStatus(StatusBookingEnum.BOOKED);
+                    TransaksiManager.getInstance().setTransaction(trans);
                     if(jumlahGuest > kamar.getBatasOrang()){
                         JOptionPane.showMessageDialog(null, "Sorry we only permit " + kamar.getBatasOrang() + " in one room", "Alert", JOptionPane.WARNING_MESSAGE);
                     }else{

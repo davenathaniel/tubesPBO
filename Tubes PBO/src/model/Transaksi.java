@@ -84,22 +84,6 @@ public class Transaksi {
         this.idPerson = idPerson;
     }
 
-    public int getIdHotel() {
-        return idHotel;
-    }
-
-    public void setIdHotel(int idHotel) {
-        this.idHotel = idHotel;
-    }
-
-    public StatusBookingEnum getStatus() {
-        return status;
-    }
-    
-    public void setStatus(StatusBookingEnum status) {
-        this.status = status;
-    }
-
     public Date getTanggal_Booking() {
         return tanggal_Booking;
     }
@@ -139,10 +123,24 @@ public class Transaksi {
     public void setIdJenisPembayaran(int idJenisPembayaran) {
         this.idJenisPembayaran = idJenisPembayaran;
     }
+
+    public int getIdHotel() {
+        return idHotel;
+    }
+
+    public void setIdHotel(int idHotel) {
+        this.idHotel = idHotel;
+    }
+
+    public StatusBookingEnum getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusBookingEnum status) {
+        this.status = status;
+    }
     
-    //Salah tempat seharusnya di Controller
     public void bookingKamar(int idJenisPembayaran, int no_Kamar, int jumlahOrang, Date checkIn, Date checkOut) {
-        //idHotel = HotelManager.getInstance().getHotel().getIdHotel();
         this.idJenisPembayaran = idJenisPembayaran;
         idPerson = PersonManager.getInstance().getPerson().getIdPerson();
         this.no_Kamar = no_Kamar;
