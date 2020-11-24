@@ -13,6 +13,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.*;
 import model.TransaksiManager;
+import static view.StyleSheet.formFont;
 
 /**
  *
@@ -21,47 +22,53 @@ import model.TransaksiManager;
  * 1119043 Tridia Enjeliani S M
  */
 public class MenuBookingPopUp implements ActionListener {
-
-    JFrame roomBookingPopUpFrame = new JFrame("Booking Payment");
-    JLabel judulBagianPembayaran;
-    ArrayList<JRadioButton> listRButtonPembayaran = new ArrayList<>();
-    ButtonGroup buttonGroup = new ButtonGroup();
+    JFrame roomBookingPopUpFrame = new JFrame("Menu Booking Pop Up");
+    JLabel judulBagianPembayaran, title;
+    ArrayList<JRadioButton> listRBPembayaran = new ArrayList<>();
+    ButtonGroup BGroup = new ButtonGroup();
     JButton nextButton;
-    JButton back = new JButton("<< Back");
-    int penanda, noKamar;
+    JButton backButton;
 
     public MenuBookingPopUp() {
         roomBookingPopUpFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        roomBookingPopUpFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        roomBookingPopUpFrame.getContentPane().setBackground(new Color(203,202,250));
 
+        title = new JLabel("P E M B A Y A R A N       B O O K I N G",JLabel.CENTER);
+        title.setBounds(0,0, (int)Toolkit.getDefaultToolkit().getScreenSize().getWidth(),(int)Toolkit.getDefaultToolkit().getScreenSize().getHeight()/5);
+        title.setFont(new Font("Impact",Font.PLAIN,50));
+        
         judulBagianPembayaran = new JLabel("Pembayaran : ");
-        judulBagianPembayaran.setBounds(20, 15, 300, 40);
+        judulBagianPembayaran.setBounds(650, 150, 200, 100);
+        judulBagianPembayaran.setFont(StyleSheet.formFont);
 
-        int height = 60;
+        int y = 300;
         int j = 0;
-        for (int i = 0; i < DataController.listJenisPembayaran.size(); i++) {
-            String jenisBayar = DataController.listJenisPembayaran.get(i).getJenisPembayaran();
-            listRButtonPembayaran.add(new JRadioButton(jenisBayar));
-            listRButtonPembayaran.get(j).setBounds(20, height, 200, 30);
-            height += 38;
-            buttonGroup.add(listRButtonPembayaran.get(j));
-            roomBookingPopUpFrame.add(listRButtonPembayaran.get(j));
+        for (int i = 0; i < DataController.getAllJenisPembayaran().size(); i++){
+            String jenisPembayaran = DataController.getAllJenisPembayaran().get(i).getJenisPembayaran();
+            listRBPembayaran.add(new JRadioButton(jenisPembayaran));
+            listRBPembayaran.get(j).setFont(formFont);
+            listRBPembayaran.get(j).setBounds(850, y, 250, 50);
+            y += 70;
+            BGroup.add(listRBPembayaran.get(j));
+            roomBookingPopUpFrame.add(listRBPembayaran.get(j));
             j++;
         }
         
-        nextButton = new JButton("Next >>");
-        nextButton.setBounds(500, 320, 150, 30);
-        nextButton.setEnabled(true);
+        nextButton = new JButton("Submit");
+        nextButton.setBounds(1000, 700, 200, 50);
+        nextButton.setFont(StyleSheet.formFont);
         nextButton.addActionListener(this);
 
-        back.setBounds(20, 500, 100, 30);
-        back.addActionListener(this);
+        backButton = new JButton("Back");
+        backButton.setBounds(750, 700, 200, 50);
+        backButton.setFont(StyleSheet.formFont);
+        backButton.addActionListener(this);
 
-        roomBookingPopUpFrame.add(back);
+        roomBookingPopUpFrame.add(backButton);
         roomBookingPopUpFrame.add(judulBagianPembayaran);
         roomBookingPopUpFrame.add(nextButton);
-        roomBookingPopUpFrame.setBackground(Color.WHITE);
-        roomBookingPopUpFrame.setSize(700, 750);
-        roomBookingPopUpFrame.setLocationRelativeTo(null);
+        roomBookingPopUpFrame.add(title);
         roomBookingPopUpFrame.setLayout(null);
         roomBookingPopUpFrame.setVisible(true);
     }
@@ -70,11 +77,11 @@ public class MenuBookingPopUp implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         String choice = e.getActionCommand();
         switch (choice) {
-            case "<< Back":
+            case "Back":
                 roomBookingPopUpFrame.dispose();
                 new MenuCustomer();
                 break;
-            case "Next >>":
+            case "Submit":
                 nextButtonAction();
                 break;
         }
@@ -84,8 +91,8 @@ public class MenuBookingPopUp implements ActionListener {
         int a = JOptionPane.showOptionDialog(null, "Are you sure?", "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
         if (a == JOptionPane.YES_OPTION) {
             boolean pilihan = false;
-            for (int i = 0; i < listRButtonPembayaran.size(); i++) {
-                if (listRButtonPembayaran.get(i).isSelected()) {
+            for (int i = 0; i < listRBPembayaran.size(); i++) {
+                if (listRBPembayaran.get(i).isSelected()) {
                     TransaksiManager.getInstance().getTransaction().setIdJenisPembayaran(i + 1);
                     pilihan = true;
                     break;
