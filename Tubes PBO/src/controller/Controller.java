@@ -163,7 +163,6 @@ public class Controller {
             stmt.setInt(8, 1);
             stmt.setInt(9, person.getIdCabang());
             stmt.setInt(10, person.getSalary());
-            stmt.setInt(11, person.getAbsensi());
             stmt.executeUpdate();
             return true;
         } catch (SQLException e) {

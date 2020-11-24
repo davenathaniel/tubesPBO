@@ -38,7 +38,7 @@ public class PembayaranController {
                         person.setTipePerson(CUSTOMER);
                         break;
                     case 1:
-                        person = new Receptionist(rs.getInt("idCabang"), rs.getInt("salary"), rs.getInt("absensi"));
+                        person = new Receptionist(rs.getInt("idCabang"), rs.getInt("salary"));
                         person.setTipePerson(RECEPTIONIST);
                         break;
                     case 2:
