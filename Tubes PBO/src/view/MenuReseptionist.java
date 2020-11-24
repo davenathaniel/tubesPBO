@@ -82,6 +82,7 @@ public class MenuReseptionist implements ActionListener{
                 break;
             case "Cek History":
                 layoutReseptionist.dispose();
+                new MenuHistoryReceptionist();
                 break;
             case "Log Out":
                 int jawab = JOptionPane.showOptionDialog(null, 
