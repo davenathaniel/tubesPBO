@@ -5,11 +5,16 @@
  */
 package view;
 
+import controller.CheckController;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
 import model.PersonManager;
+import model.TransaksiManager;
 import static model.enums.TipePersonEnum.CUSTOMER;
 
 /**
@@ -38,6 +43,38 @@ public class MenuCancelBooking implements ActionListener{
         judul.setBounds(650, 150, 200, 100);
         judul.setFont(formFont);
         
+        DefaultTableModel model = controller.CheckController.getUserActiveTransaction(PersonManager.getInstance().getPerson().getIdPerson());
+        table = new JTable(model);
+        table.setBounds(650, 250, 700, 500);
+        table.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
+        
+        JScrollPane sp = new JScrollPane(table);
+        sp.setBounds(650, 250, 700, 500);
+        
+        table.setRowSelectionAllowed(true);
+        ListSelectionModel select = table.getSelectionModel();
+        select.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        select.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                String data = null;
+                int row = table.getSelectedRow();
+                data = (String) table.getValueAt(row, 0);
+                int x = JOptionPane.showOptionDialog(null, "Are you sure?", "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
+                if(x == JOptionPane.YES_OPTION){
+                    int idTrans = Integer.parseInt(data);
+                    TransaksiManager.getInstance().setTransaction(CheckController.getOneTransaction(idTrans));
+                    if(CheckController.CancelBooking(TransaksiManager.getInstance().getTransaction())){
+                        JOptionPane.showMessageDialog(null, "Cancelation Successful.");
+                        cancelBookingFrame.dispose();
+                        new MenuCancelBooking();
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Cancelation Failed!", "Alert", JOptionPane.WARNING_MESSAGE);
+                    }
+                }
+            }
+        });
+        
         dataPanel = new JPanel();
         dataPanel.setLayout(null);
         
@@ -47,6 +84,7 @@ public class MenuCancelBooking implements ActionListener{
         cancelBookingFrame.add(back);
         cancelBookingFrame.add(title);
         cancelBookingFrame.add(judul);
+        cancelBookingFrame.add(sp);
         cancelBookingFrame.add(dataPanel);
         cancelBookingFrame.setLayout(null);
         cancelBookingFrame.setVisible(true);
