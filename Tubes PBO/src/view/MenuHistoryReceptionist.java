@@ -23,8 +23,9 @@ import javax.swing.table.DefaultTableModel;
 import model.TransaksiManager;
 
 /**
- *
- * @author LENOVO G4-45
+ * 1119001 Dave Nathaniel K
+ * 1119035 Maria Vabiolla V
+ * 1119043 Tridia Enjeliani S M
  */
 public class MenuHistoryReceptionist implements ActionListener{
     JFrame historyCustomerFrame = new JFrame("History Menu");
