@@ -7,16 +7,11 @@ package view;
 
 import controller.DataController;
 import controller.PembayaranController;
-import java.awt.Color;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import javax.swing.ButtonGroup;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JRadioButton;
+import javax.swing.*;
 import model.TransaksiManager;
 
 /**
@@ -36,7 +31,7 @@ public class MenuBookingPopUp implements ActionListener {
     int penanda, noKamar;
 
     public MenuBookingPopUp() {
-        roomBookingPopUpFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        roomBookingPopUpFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         judulBagianPembayaran = new JLabel("Pembayaran : ");
         judulBagianPembayaran.setBounds(20, 15, 300, 40);
@@ -52,7 +47,7 @@ public class MenuBookingPopUp implements ActionListener {
             roomBookingPopUpFrame.add(listRButtonPembayaran.get(j));
             j++;
         }
-
+        
         nextButton = new JButton("Next >>");
         nextButton.setBounds(500, 320, 150, 30);
         nextButton.setEnabled(true);
@@ -103,6 +98,7 @@ public class MenuBookingPopUp implements ActionListener {
                         JOptionPane.showMessageDialog(null, "Failed to make payment!", "Alert", JOptionPane.WARNING_MESSAGE);
                     } else {
                         JOptionPane.showMessageDialog(null, "Payment succeed!");
+                        JOptionPane.showMessageDialog(null, (TransaksiManager.getInstance().getTransaction().getIdTransaksi()));
                         roomBookingPopUpFrame.dispose();
                         new MenuCustomer();
                     }
