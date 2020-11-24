@@ -6,16 +6,11 @@
 package view;
 
 import controller.CheckController;
+import controller.DataController;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
+import javax.swing.*;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -28,16 +23,16 @@ import model.TransaksiManager;
  * 1119043 Tridia Enjeliani S M
  */
 public class MenuHistoryReceptionist implements ActionListener{
-    JFrame historyCustomerFrame = new JFrame("History Menu");
+    JFrame historyReceptionsitFrame = new JFrame("History Menu");
     JLabel title, judul;
     JTable table;
     JPanel dataPanel;
     JButton backButton;
     
     public MenuHistoryReceptionist(){
-        historyCustomerFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        historyCustomerFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        historyCustomerFrame.getContentPane().setBackground(StyleSheet.backgroundColor);
+        historyReceptionsitFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        historyReceptionsitFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        historyReceptionsitFrame.getContentPane().setBackground(StyleSheet.backgroundColor);
         
         title = new JLabel("R E C E P T I O N I S T    H I S T O R Y    M E N U",JLabel.CENTER);
         title.setBounds(0,0, (int)Toolkit.getDefaultToolkit().getScreenSize().getWidth(),(int)Toolkit.getDefaultToolkit().getScreenSize().getHeight()/5);
@@ -68,11 +63,13 @@ public class MenuHistoryReceptionist implements ActionListener{
                 if(x == JOptionPane.YES_OPTION){
                     int idTrans = Integer.parseInt(data);
                     TransaksiManager.getInstance().setTransaction(CheckController.getOneTransaction(idTrans));
-                    new MenuReseptionist();
+                    new MenuViewTransaksi();
                 }
             }
             
         });
+        
+        
         
         dataPanel = new JPanel();
         dataPanel.setLayout(null);
@@ -82,13 +79,13 @@ public class MenuHistoryReceptionist implements ActionListener{
         backButton.setFont(StyleSheet.formFont);
         backButton.addActionListener(this);
           
-        historyCustomerFrame.add(title);
-        historyCustomerFrame.add(judul);
-        historyCustomerFrame.add(sp);
-        historyCustomerFrame.add(dataPanel);
-        historyCustomerFrame.add(backButton);
-        historyCustomerFrame.setLayout(null);
-        historyCustomerFrame.setVisible(true);
+        historyReceptionsitFrame.add(title);
+        historyReceptionsitFrame.add(judul);
+        historyReceptionsitFrame.add(sp);
+        historyReceptionsitFrame.add(dataPanel);
+        historyReceptionsitFrame.add(backButton);
+        historyReceptionsitFrame.setLayout(null);
+        historyReceptionsitFrame.setVisible(true);
     }
 
     @Override
@@ -96,8 +93,8 @@ public class MenuHistoryReceptionist implements ActionListener{
         String buttonClick = e.getActionCommand();
         switch(buttonClick){
             case "Back":
-                historyCustomerFrame.dispose();
-                new MenuCustomer();
+                historyReceptionsitFrame.dispose();
+                new MenuReseptionist();
                 break;
         }
     }
