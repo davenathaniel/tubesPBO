@@ -9,7 +9,6 @@ import controller.CheckController;
 import static controller.DataController.getPersonByID;
 import static controller.DataController.listCabangHotel;
 import static controller.DataController.listJenisPembayaran;
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -39,7 +38,7 @@ public class CheckOutPopUp implements ActionListener {
     public CheckOutPopUp(){
         checkInPopUpFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         checkInPopUpFrame.setSize(520, 700);
-        checkInPopUpFrame.getContentPane().setBackground(new Color(255, 255, 230));
+        checkInPopUpFrame.getContentPane().setBackground(StyleSheet.colorPopUp);
         
         title = new JLabel("Check-Out Data Confirmation", JLabel.CENTER);
         title.setBounds(0, 0,520,40);
@@ -125,7 +124,7 @@ public class CheckOutPopUp implements ActionListener {
         String buttonClick = e.getActionCommand();
         switch(buttonClick){
             case "Confirm":
-                if(TransaksiManager.getInstance().getTransaction().getStatus().equals(StatusBookingEnum.CHECKEDIN) && CheckController.updateCheckIn(TransaksiManager.getInstance().getTransaction().getIdTransaksi())){
+                if(TransaksiManager.getInstance().getTransaction().getStatus().equals(StatusBookingEnum.CHECKEDIN) && CheckController.updateCheckOut(TransaksiManager.getInstance().getTransaction().getIdTransaksi())){
                     TransaksiManager.getInstance().getTransaction().setStatus(StatusBookingEnum.CHECKEDOUT);
                     JOptionPane.showMessageDialog(null, "Update Status Success!");
                     checkInPopUpFrame.dispose();
