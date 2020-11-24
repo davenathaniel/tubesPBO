@@ -219,7 +219,7 @@ public class MenuManagementData implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         String button = e.getActionCommand();
         switch (button) {
-            case "Back":
+            case "<< Back":
                 managementDataFrame.dispose();
                 new MenuAdmin();
                 break;
