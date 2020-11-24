@@ -5,6 +5,7 @@
  */
 package view;
 
+import controller.CheckController;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -24,7 +25,7 @@ public class MenuCheckIn implements ActionListener{
     JLabel title, labelBooking, labelNamaHotel;
     JPanel panelInput;
     JTextField booking;
-    JButton bSubmit;
+    JButton bSubmit, backButton;
     
     public MenuCheckIn() {
         layoutCheckIn.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -49,6 +50,13 @@ public class MenuCheckIn implements ActionListener{
         bSubmit = new JButton("Submit");
         bSubmit.setBounds(1180, 10, 100, 50);
         bSubmit.setFont(StyleSheet.formFont);
+        bSubmit.addActionListener(this);
+        
+        backButton = new JButton("<< Back");
+        backButton.setBounds(900,800,150,70);
+        backButton.setFont(StyleSheet.buttonFont);
+        backButton.setBackground(StyleSheet.cancelButtonColor);
+        backButton.addActionListener(this);
         
         panelInput.add(labelBooking);
         panelInput.add(booking);
@@ -58,6 +66,7 @@ public class MenuCheckIn implements ActionListener{
         
         layoutCheckIn.add(title);
         layoutCheckIn.add(panelInput);
+        layoutCheckIn.add(backButton);
         layoutCheckIn.setLayout(null);
         layoutCheckIn.setVisible(true);
     }
@@ -67,6 +76,18 @@ public class MenuCheckIn implements ActionListener{
         String buttonClick = e.getActionCommand();
         switch(buttonClick){
             case "Submit":
+                String idTransaksi = this.booking.getText();
+                if(idTransaksi.equals("")){
+                    JOptionPane.showMessageDialog(null, "Please insert id Transaksi", "Alert", JOptionPane.WARNING_MESSAGE);
+                }else{
+                    int idTransInt = Integer.parseInt(idTransaksi);
+                    TransaksiManager.getInstance().setTransaction(CheckController.getOneTransaction(idTransInt));
+                    new CheckInPopUp();
+                }
+                break;
+            case "<< Back":
+                layoutCheckIn.dispose();
+                new MenuReseptionist();
                 break;
         }
     }

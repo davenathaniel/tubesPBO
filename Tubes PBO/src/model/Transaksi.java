@@ -140,17 +140,6 @@ public class Transaksi {
         this.status = status;
     }
     
-    public void bookingKamar(int idJenisPembayaran, int no_Kamar, int jumlahOrang, Date checkIn, Date checkOut) {
-        this.idJenisPembayaran = idJenisPembayaran;
-        idPerson = PersonManager.getInstance().getPerson().getIdPerson();
-        this.no_Kamar = no_Kamar;
-        this.jumlahOrang = jumlahOrang;
-        this.checkIn = checkIn;
-        this.checkOut = checkOut;
-        this.tanggal_Booking = new Date();
-        TransaksiManager.getInstance().setTransaction(this);
-    }
-
     public int getLamaInap() {
         long diffInMillies = Math.abs(this.checkOut.getTime() - this.checkIn.getTime());
         long diff = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
@@ -162,17 +151,8 @@ public class Transaksi {
         return (int)(getLamaInap() * room.getHarga());
     }
 
-    public int getBill() {
-        return (HitungTotalBayar());
-    }
-
-    public int getRawBill() {
-        return (HitungTotalBayar());
-    }
-
     public String printBill() {
-        return "Biaya Hotel : " + (HitungTotalBayar())
-                + "\n\n\nTotal : " + (getBill());
+        return "Biaya Hotel : " + (HitungTotalBayar());
     }
 
 }
