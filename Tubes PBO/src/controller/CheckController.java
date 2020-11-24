@@ -74,7 +74,43 @@ public class CheckController {
         }
         return (model);
     }
+    
+    // SELECT Semua Transaksi berdasarkan idHotel
+    public static DefaultTableModel getAllTransactionByHotel(int idHotel) {
+        DefaultTableModel model = new DefaultTableModel(new String[]{"ID Transaksi", "ID Hotel", "ID User", "No. Kamar", "Tanggal Booking", "Check In", "Check Out", "Jumlah Guest", "ID Pembayaran", "Status"}, 0) {
 
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;//This causes all cells to be not editable
+            }
+        };
+        conn.connect();
+
+        SimpleDateFormat formatter = new SimpleDateFormat("dd MMMM yyyy");
+
+        String query = "SELECT * FROM bookingtransaksi WHERE idHotel = " + idHotel;
+        try {
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                String idT = Integer.toString(rs.getInt("idTransaksi"));
+                String idH = Integer.toString(rs.getInt("idHotel"));
+                String noKamar = Integer.toString(rs.getInt("noKamar"));
+                String idU = Integer.toString(rs.getInt("idPerson"));
+                String booking = formatter.format(rs.getDate("tanggalBooking"));
+                String checkin = formatter.format(rs.getDate("checkIn"));
+                String checkout = formatter.format(rs.getDate("checkOut"));
+                String jumlahGuest = Integer.toString(rs.getInt("jumlahOrang"));
+                String idJenisPembayaran = Integer.toString(rs.getInt("idJenis"));
+                String status = rs.getString("status");
+                model.addRow(new Object[]{idT, idH, idU, noKamar, booking, checkin, checkout, jumlahGuest, idJenisPembayaran, status});
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return (model);
+    }
+    
     // SELECT Transaksi berdasarkan Status
     public static DefaultTableModel getTransactionByStatus(int idHotel, StatusBookingEnum status) {
         DefaultTableModel model = new DefaultTableModel(new String[]{"ID Transaksi", "ID Hotel", "ID Person", "Tipe Kamar", "Tanggal Booking", "Check In", "Check Out"}, 0) {
