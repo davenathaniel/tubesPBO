@@ -54,7 +54,6 @@ public class TransaksiManager {
                 + "<br/>Detail Pembayaran : <br/>      ID Pembayaran : " + this.transaction.getIdJenisPembayaran()
                 + "<br/>      Jenis : " + listJenisPembayaran.get(this.transaction.getIdJenisPembayaran() - 1).getJenisPembayaran()
                 + "<br/>      Harga Total : " + (transaction.HitungTotalBayar())
-                + "<br/>      Harga yang harus dibayar : " + (transaction.getBill())
                 + "<br/>Status Transaksi : " + this.transaction.getStatus() + "</pre></html>";
     }
 }

@@ -5,10 +5,12 @@
  */
 package view;
 
+import controller.CheckController;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
+import model.TransaksiManager;
 
 /**
  * 1119001 Dave Nathaniel K
@@ -19,8 +21,8 @@ public class MenuCheckOut implements ActionListener {
     JFrame layoutCheckIn = new JFrame("Check-Out Menu");
     JLabel title, labelBooking;
     JTextField booking;
-    JButton bSubmit;
-    JPanel panelInput, panelOutput;
+    JButton bSubmit, backButton;
+    JPanel panelInput;
     
     public MenuCheckOut() {
         layoutCheckIn.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -45,6 +47,13 @@ public class MenuCheckOut implements ActionListener {
         bSubmit = new JButton("Submit");
         bSubmit.setBounds(1180, 10, 100, 50);
         bSubmit.setFont(StyleSheet.formFont);
+        bSubmit.addActionListener(this);
+        
+        backButton = new JButton("<< Back");
+        backButton.setBounds(900,800,150,70);
+        backButton.setFont(StyleSheet.buttonFont);
+        backButton.setBackground(StyleSheet.cancelButtonColor);
+        backButton.addActionListener(this);
         
         panelInput.add(labelBooking);
         panelInput.add(booking);
@@ -54,6 +63,7 @@ public class MenuCheckOut implements ActionListener {
         
         layoutCheckIn.add(title);
         layoutCheckIn.add(panelInput);
+        layoutCheckIn.add(backButton);
         layoutCheckIn.setLayout(null);
         layoutCheckIn.setVisible(true);
     }
@@ -63,6 +73,18 @@ public class MenuCheckOut implements ActionListener {
         String buttonClick = e.getActionCommand();
         switch(buttonClick){
             case "Submit":
+                String idTransaksi = this.booking.getText();
+                if(idTransaksi.equals("")){
+                    JOptionPane.showMessageDialog(null, "Please insert id Transaksi", "Alert", JOptionPane.WARNING_MESSAGE);
+                }else{
+                    int idTransInt = Integer.parseInt(idTransaksi);
+                    TransaksiManager.getInstance().setTransaction(CheckController.getOneTransaction(idTransInt));
+                    new CheckOutPopUp();
+                }
+                break;
+            case "<< Back":
+                layoutCheckIn.dispose();
+                new MenuReseptionist();
                 break;
         }
     }

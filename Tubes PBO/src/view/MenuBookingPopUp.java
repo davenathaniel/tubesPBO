@@ -97,7 +97,7 @@ public class MenuBookingPopUp implements ActionListener {
                 }
             }
             if (pilihan) {
-                a = JOptionPane.showOptionDialog(null, "Total yang harus dibayar : " + TransaksiManager.getInstance().getTransaction().getBill() + "\nLanjutkan Pembayaran?", "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
+                a = JOptionPane.showOptionDialog(null, "Total yang harus dibayar : " + TransaksiManager.getInstance().getTransaction().HitungTotalBayar() + "\nLanjutkan Pembayaran?", "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
                 if (a == JOptionPane.YES_OPTION) {
                     if (!PembayaranController.updatePembayaran(TransaksiManager.getInstance().getTransaction().getIdTransaksi(), TransaksiManager.getInstance().getTransaction().getIdJenisPembayaran())) {
                         JOptionPane.showMessageDialog(null, "Failed to make payment!", "Alert", JOptionPane.WARNING_MESSAGE);
