@@ -84,8 +84,16 @@ public class MenuReseptionist implements ActionListener{
                 layoutReseptionist.dispose();
                 break;
             case "Log Out":
-                layoutReseptionist.dispose();
-                new MenuLogin();
+                int jawab = JOptionPane.showOptionDialog(null, 
+                    "Log Out Now?", 
+                    "Log Out", 
+                    JOptionPane.YES_NO_OPTION, 
+                    JOptionPane.QUESTION_MESSAGE, null, null, null);
+    
+                if(jawab == JOptionPane.YES_OPTION){
+                    layoutReseptionist.dispose();
+                    new MenuLogin();
+                }
                 break;
         }
     }
