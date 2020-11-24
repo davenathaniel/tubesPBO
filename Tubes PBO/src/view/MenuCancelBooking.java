@@ -27,7 +27,7 @@ public class MenuCancelBooking implements ActionListener{
     JLabel title, judul;
     JTable table;
     JPanel dataPanel;
-    JButton back = new JButton("Back");
+    JButton backButton = new JButton("Back");
     Font formFont = new Font("Arial",Font.PLAIN,20);
     
     public MenuCancelBooking(){
@@ -40,16 +40,16 @@ public class MenuCancelBooking implements ActionListener{
         title.setFont(new Font("Impact",Font.PLAIN,50));
         
         judul = new JLabel("Daftar Booking : ");
-        judul.setBounds(650, 150, 200, 100);
+        judul.setBounds(450, 150, 200, 100);
         judul.setFont(formFont);
         
         DefaultTableModel model = controller.CheckController.getUserActiveTransaction(PersonManager.getInstance().getPerson().getIdPerson());
         table = new JTable(model);
-        table.setBounds(650, 250, 700, 500);
+        table.setBounds(450, 250, 1000, 500);
         table.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
         
         JScrollPane sp = new JScrollPane(table);
-        sp.setBounds(650, 250, 700, 500);
+        sp.setBounds(450, 250, 1000, 500);
         
         table.setRowSelectionAllowed(true);
         ListSelectionModel select = table.getSelectionModel();
@@ -78,10 +78,11 @@ public class MenuCancelBooking implements ActionListener{
         dataPanel = new JPanel();
         dataPanel.setLayout(null);
         
-        back.setBounds(650, 800, 100, 50);
-        back.addActionListener(this);
+        backButton.setBounds(450, 800, 100, 50);
+        backButton.setFont(StyleSheet.formFont);
+        backButton.addActionListener(this);
         
-        cancelBookingFrame.add(back);
+        cancelBookingFrame.add(backButton);
         cancelBookingFrame.add(title);
         cancelBookingFrame.add(judul);
         cancelBookingFrame.add(sp);
